@@ -1,0 +1,41 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&display=swap');
+
+//breakpoints
+$max-width_desktop_medium: 1050px;
+
+//colors
+$font-color_grey: #666666;
+$font-color_dark: #312c3a;
+$font-color_active: #5218d0;
+$font-color_inactive: #e1e1e1;
+$font-color_red: #fb4e4e;
+$font-color_title: #152536;
+
+$button-color_border: rgba(140, 140, 140, 0.1);
+$button-color_main: #651fff;
+$button-color_dark: #5218d0;
+$button-color_inactive: #dbe2e6;
+$button-color_error: #ffbfbf;
+$button-color_success: #b9ffc3;
+
+$statusbar-color_green: #2bc945;
+$statusbar-color_grey: #f1f5f7;
+
+$background-color_grey: #f8f8f8;
+$background-color_white: #fff;
+$background-color_black: #4d4d4d;
+
+//fonts
+$font-main: 'Nunito', sans-serif;
+$font-regular: 400;
+$font-medium: 600;
+$font-bold: 700;
+$font-extra-bold: 800;
+
+$font-size-: 800;
+
+$border-radius: 12px;
+
+//mobile
+$font-header-mobile: 24px 700;
+$font-title-h2-mobile: 18px 700;

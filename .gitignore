@@ -1,0 +1,14 @@
+.cache-loader
+/.idea
+/.vscode
+*.dump
+*.sql
+.DS_Store
+Thumbs.db
+public/index-lang.json
+node_modules
+!.gitempty
+/.env
+.env
+/code_style.md
+archive

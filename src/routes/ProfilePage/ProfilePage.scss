@@ -1,0 +1,42 @@
+@import '../../style/variables';
+
+.profile-page {
+	height: 100%;
+	width: 100%;
+	overflow-x: hidden;
+
+	&::-webkit-scrollbar {
+		display: none;
+	}
+
+	&__content {
+		margin-top: 24px;
+		display: flex;
+		gap: 24px;
+
+		&-card {
+			flex-grow: 1;
+		}
+
+		&-posts {
+			display: flex;
+			flex-direction: column;
+			row-gap: 24px;
+			flex-grow: 3;
+		}
+
+		@media screen and (max-width: 1350px) {
+			flex-direction: column;
+		}
+	}
+
+	h1 {
+		align-self: flex-start;
+		font-size: 32px;
+		font-weight: $font-medium;
+	}
+
+	@media screen and (max-width: $max-width_desktop-medium) {
+		width: 100%;
+	}
+}

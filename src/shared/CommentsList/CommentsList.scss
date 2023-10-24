@@ -1,0 +1,28 @@
+@import '../../style/variables.scss';
+
+.comments-list {
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+
+	> h3 {
+		font-size: 18px;
+		font-weight: $font-bold;
+	}
+
+	@media screen and (max-width: $max-width_desktop-medium) {
+		width: 100%;
+		gap: 24px;
+	}
+
+	&__add-comment {
+		width: 700px;
+		display: flex;
+		flex-direction: column;
+		gap: 24px;
+
+		@media screen and (max-width: 1200px) {
+			width: 100%;
+		}
+	}
+}

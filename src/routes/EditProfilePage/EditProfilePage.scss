@@ -1,0 +1,30 @@
+@import '../../style/variables';
+
+.edit-page {
+	display: flex;
+	width: 100%;
+	flex-direction: column;
+	overflow-x: hidden;
+
+	&__content {
+		position: relative;
+	}
+}
+
+@media (max-width: $max-width_desktop-medium) {
+	.edit-page {
+		width: 100%;
+		flex-direction: row;
+		height: 100%;
+
+		&__content {
+			width: 100%;
+			align-self: center;
+			justify-self: center;
+		}
+
+		&__form {
+			margin: 50px auto;
+		}
+	}
+}

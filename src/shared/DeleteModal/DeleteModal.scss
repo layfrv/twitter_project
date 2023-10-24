@@ -1,0 +1,17 @@
+@import '../../style/variables';
+
+.delete-modal {
+	@media (max-width: $max-width_desktop_medium) {
+		margin-top: 200px;
+	}
+
+	&__buttons {
+		margin-top: 24px;
+		display: flex;
+		gap: 16px;
+
+		@media (max-width: $max-width_desktop-medium) {
+			flex-direction: column;
+		}
+	}
+}

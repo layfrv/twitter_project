@@ -1,0 +1,54 @@
+@import '../../style/variables.scss';
+
+.text-field {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+
+	&__label {
+		line-height: 24px;
+		font-size: 16px;
+		font-weight: $font-regular;
+		margin-bottom: 4px;
+	}
+
+	&__text {
+		min-height: 100px;
+		background-color: $background-color_white;
+		position: relative;
+		display: flex;
+		border-radius: 12px;
+		border: 1px solid $button-color_inactive;
+		width: 100%;
+		padding: 8px 12px;
+		font-family: $font-main;
+		font-size: 16px;
+		line-height: 24px;
+		color: $font-color-dark;
+
+		&::-webkit-scrollbar {
+			display: none;
+		}
+
+		&::placeholder {
+			color: $font-color_inactive;
+		}
+
+		:invalid {
+			border: 1px solid $button-color-error;
+		}
+	}
+
+	&__container {
+		width: 100%;
+		position: relative;
+	}
+
+	&__icon {
+		position: absolute;
+		top: 5px;
+		right: 8px;
+		opacity: 30%;
+		cursor: pointer;
+	}
+}

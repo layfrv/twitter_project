@@ -1,0 +1,12 @@
+.return__button {
+	background-color: inherit;
+	width: 80px;
+	height: 26px;
+	display: flex;
+	margin-bottom: 16px;
+	cursor: pointer;
+
+	> p {
+		font-size: 16px;
+	}
+}

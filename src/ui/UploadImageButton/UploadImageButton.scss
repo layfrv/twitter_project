@@ -1,0 +1,68 @@
+@import '../../style/variables';
+
+.upload-button {
+	&__container {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+	}
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	height: 46px;
+	padding: 11px 8px;
+	align-items: center;
+	justify-content: center;
+	background-color: $background-color-white;
+	border-radius: 12px;
+	border: 1px solid $button-color-inactive;
+	position: relative;
+
+	&-label {
+		margin-left: 8px;
+	}
+
+	&-btn {
+		cursor: pointer;
+		width: 100%;
+		height: 100%;
+		opacity: 0;
+		position: absolute;
+
+		&__text {
+			margin-left: 8px;
+		}
+	}
+
+	&-with-image {
+		width: 100%;
+		display: flex;
+		justify-content: space-between;
+		gap: 16px;
+		border-radius: 12px;
+		border: 1px solid $button-color-inactive;
+		padding: 8px;
+		align-items: center;
+
+		&__content {
+			display: flex;
+			gap: 16px;
+			align-items: center;
+		}
+
+		&__img {
+			width: 48px;
+			height: 48px;
+			border-radius: 8px;
+			overflow: hidden;
+
+			& > img {
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+			}
+		}
+	}
+}

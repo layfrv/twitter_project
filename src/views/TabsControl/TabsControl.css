@@ -1,0 +1,25 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&display=swap");
+.button-toggle {
+  display: flex;
+  flex: 1;
+  background-color: #F8F8F8;
+  padding: 4px;
+  border-radius: 16px;
+  font-weight: 400;
+  font-size: 16px;
+}
+.button-toggle-btn {
+  flex: 1;
+  padding: 11px 12px;
+  border-radius: 12px;
+  background-color: inherit;
+}
+.button-toggle-btn__active {
+  flex: 1;
+  background-color: #5218D0;
+  border-radius: 12px;
+  color: white;
+  font-weight: 600;
+}
+
+/*# sourceMappingURL=TabsControl.css.map */

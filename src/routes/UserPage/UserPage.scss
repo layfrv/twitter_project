@@ -1,0 +1,38 @@
+@import '../../style/variables.scss';
+
+.user-page {
+	height: 100%;
+	width: 100%;
+	overflow-x: hidden;
+
+	&::-webkit-scrollbar {
+		display: none;
+	}
+
+	&__content {
+		margin-top: 24px;
+		display: flex;
+		gap: 24px;
+
+		&-posts {
+			display: flex;
+			flex-direction: column;
+			row-gap: 24px;
+			min-width: 0;
+		}
+
+		@media screen and (max-width: 1300px) {
+			flex-direction: column;
+		}
+	}
+
+	h1 {
+		align-self: flex-start;
+		font-size: 32px;
+		font-weight: $font-medium;
+	}
+
+	@media screen and (max-width: $max-width_desktop-medium) {
+		width: 100%;
+	}
+}

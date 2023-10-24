@@ -1,0 +1,47 @@
+@import '../../style/variables.scss';
+
+.search-input {
+	position: relative;
+	height: 46px;
+	display: inline-flex;
+	width: 337px;
+
+	@media screen and (max-width: $max-width_desktop-medium) {
+		width: 100%;
+	}
+
+	&:focus {
+		border: 1px solid $button-color_main;
+	}
+
+	& > input {
+		position: relative;
+		border: 1px $font-color_inactive solid;
+		border-radius: $border-radius;
+		padding: 8px 12px 8px 40px;
+		width: 337px;
+		background-image: url('../icons/search.svg');
+		background-repeat: no-repeat;
+		background-position: 8px;
+		background-size: 24px;
+
+		@media screen and (max-width: $max-width_desktop_medium) {
+			width: 100%;
+		}
+	}
+
+	&__icon {
+		position: absolute;
+		display: flex;
+		align-items: center;
+		top: 0;
+		bottom: 0;
+		right: 0.875rem;
+		height: 24px;
+		width: 24px;
+	}
+
+	@media screen and (max-width: $max-width_desktop_medium) {
+		width: 100%;
+	}
+}

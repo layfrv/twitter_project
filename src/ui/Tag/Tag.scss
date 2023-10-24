@@ -1,0 +1,14 @@
+@import '../../style/variables.scss';
+
+.tag {
+	width: max-content;
+	background-color: $button-color_main;
+	border-radius: 8px;
+
+	&__text {
+		color: white;
+		font-size: 12px;
+		font-weight: $font-regular;
+		padding: 4px 8px;
+	}
+}

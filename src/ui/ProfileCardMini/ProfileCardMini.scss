@@ -1,0 +1,54 @@
+@import '../../style/variables.scss';
+
+.profile-card-mini {
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+	border-radius: 12px;
+	padding: 16px;
+	border: 1px solid $font-color_inactive;
+	background: $background-color_white;
+	justify-content: space-between;
+	min-width: 300px;
+
+	@media screen and (max-width: $max-width_desktop-medium) {
+		width: 100%;
+		flex-direction: row;
+		align-items: center;
+	}
+
+	&__header {
+		display: flex;
+		flex-direction: row;
+		gap: 12px;
+		align-items: center;
+		justify-content: space-between;
+		width: 100%;
+
+		& > h3 {
+			font-weight: $font-medium;
+		}
+	}
+
+	&_menu {
+		position: relative;
+	}
+
+	&__body {
+		display: flex;
+		flex-direction: column;
+
+		&_buttons {
+			margin-top: 16px;
+			display: flex;
+			flex-direction: column;
+			gap: 8px;
+
+			@media screen and (max-width: $max-width_desktop-medium) {
+				flex-direction: row;
+				margin-top: 0;
+				width: max-content;
+			}
+		}
+	}
+}

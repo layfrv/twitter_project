@@ -1,0 +1,31 @@
+@import '../../style/variables';
+
+.alert-container {
+	&__error {
+		border-radius: 12px;
+		padding: 16px;
+		background-color: $button-color-error;
+	}
+
+	&__success {
+		border-radius: 12px;
+		padding: 16px;
+		background-color: $button-color-success;
+	}
+}
+.alert-content {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+
+	&__icon {
+		height: min-content;
+		flex-shrink: 0;
+		height: 24px;
+	}
+
+	&__text {
+		line-height: 22px;
+		margin-left: 12px;
+	}
+}

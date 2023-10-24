@@ -1,0 +1,29 @@
+@import '../../style/variables';
+
+.button-toggle {
+	display: flex;
+	flex: 1;
+	background-color: $background-color-grey;
+	padding: 4px;
+	border-radius: 16px;
+
+	font-weight: 400;
+	font-size: 16px;
+
+	&-btn {
+		flex: 1;
+		padding: 11px 12px;
+		border-radius: 12px;
+		background-color: inherit;
+		cursor: pointer;
+
+		&__active {
+			flex: 1;
+			background-color: $button-color-dark;
+			border-radius: 12px;
+			color: white;
+			font-weight: 600;
+			cursor: pointer;
+		}
+	}
+}

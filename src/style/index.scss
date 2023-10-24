@@ -1,0 +1,39 @@
+@import 'variables';
+
+body {
+	font-family: $font-main;
+
+	margin: 0;
+	padding: 0;
+
+	width: 100%;
+}
+
+button,
+input {
+	display: block;
+	box-shadow: none;
+	background-color: transparent;
+	background: #fff;
+	font-family: 'Nunito', sans-serif;
+	font-size: 16px;
+	font-style: normal;
+	font-weight: 400;
+	color: #312c3a;
+	line-height: 24px;
+	outline: none;
+}
+
+input:invalid {
+	border: 1px solid #ffbfbf;
+}
+
+input:focus,
+textarea:focus {
+	border: 1px solid #651fff;
+}
+
+textarea {
+	outline: none;
+	overflow-y: scroll;
+}
