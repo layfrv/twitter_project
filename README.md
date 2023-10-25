@@ -10,8 +10,9 @@
 
 ## Технологии
 - React 18
-- Redux Toolkit, Redux Thunk
+- Redux Toolkit
 - React Router Dom v.5
+- Axios
 - SCSS
 - Typescript
 
