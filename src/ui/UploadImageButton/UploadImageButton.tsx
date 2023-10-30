@@ -6,8 +6,8 @@ import './UploadImageButton.scss';
 interface IUploadButtonProps {
 buttonText: string;
 label: string;
-onChange: (image: FormData | null) => void;
-image: File | null;
+onChange: any;
+image: any ;
 }
 
 export default function UploadImageButton(props: IUploadButtonProps) {

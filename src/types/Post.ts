@@ -69,3 +69,12 @@ text: string;
 id: number;
 postId: number;
 };
+
+export type TagDataType = {
+title: string;
+}
+
+export type ImageDataType = {
+imageFile: FormData;
+selectedPostId: number;
+};

@@ -52,14 +52,11 @@ export default function EditForm() {
 
     const handleEditUser = async (event) => {
         event.preventDefault();
-
         const updatedData: EditUserDataType = createData();
 
         if (avatar !== null) {
             try {
-                const imageFile = new FormData();
-                imageFile.append('file', avatar);
-                await dispatch(uploadAvatar(imageFile));
+                await dispatch(uploadAvatar(avatar));
             } catch (error) {
                 console.log(error);
             }

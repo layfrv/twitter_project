@@ -7,3 +7,4 @@ export const POST_IMAGE_ID = '/api/post/image/';
 export const GET_FEED_POSTS = '/api/post/my-feed';
 export const PIN_POST_ID = '/api/user/pin-post/';
 export const UNPIN_POST = '/api/user/unpin-post';
+export const SEARCH_BY_TAG = '/api/tag/search/';

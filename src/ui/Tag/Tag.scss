@@ -2,13 +2,28 @@
 
 .tag {
 	width: max-content;
-	background-color: $button-color_main;
 	border-radius: 8px;
+	
+	&__primary {
+		background-color: $button-color_main;
 
-	&__text {
-		color: white;
+		& > p {
+			color: white;
+		}
+	}
+	
+	&__secondary {
+		border: 1px solid $button-color_main;
+		background-color: $background-color_white;
+		
+		& > p {
+			color: $background-color_black;
+		}
+	}
+
+	& > p {
 		font-size: 12px;
 		font-weight: $font-regular;
-		padding: 4px 8px;
+		padding: 6px 9px;
 	}
 }

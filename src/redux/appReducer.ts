@@ -4,7 +4,7 @@ import {getUser} from './userReducer';
 const appSlice = createSlice({
     name: 'app',
     initialState: {
-        isReady: true,
+        isReady: false,
         error: null,
     },
     reducers: {},

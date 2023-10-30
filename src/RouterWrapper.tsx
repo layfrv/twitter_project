@@ -1,7 +1,8 @@
+import Cookies from 'js-cookie';
 import React from 'react';
-import {useHistory} from 'react-router-dom';
 import {RoutePaths} from './constants/routes';
-import {useAppSelector} from './redux/store';
+import {useAppDispatch} from './redux/store';
+import {getAccessToken} from './redux/userReducer';
 
 type WrapperProps = {
 isPrivate: boolean;
@@ -9,18 +10,22 @@ children?: React.ReactNode;
 };
 
 export default function RouterWrapper({isPrivate, children}: WrapperProps) {
-    const history = useHistory();
-    const user = useAppSelector((state) => state.user.user);
+    const dispatch = useAppDispatch();
+
+    const accessToken = Cookies.get('accessToken');
+    const refreshToken = Cookies.get('refreshToken');
 
     React.useEffect(() => {
-        if (isPrivate && user === null) {
-            history.replace(RoutePaths.ROUTE_LOGIN);
-            return;
+        if (!accessToken && refreshToken) {
+            dispatch(getAccessToken(refreshToken));
         }
-        if (!isPrivate && user) {
-            history.push(RoutePaths.ROUTE_PROFILE);
+        if (isPrivate && !accessToken && !refreshToken) {
+            window.location.replace(RoutePaths.ROUTE_LOGIN);
         }
-    }, [isPrivate, user, history]);
+        if (!isPrivate && accessToken) {
+            window.location.replace(RoutePaths.ROUTE_PROFILE);
+        }
+    }, []);
 
     return <>{children}</>;
 }

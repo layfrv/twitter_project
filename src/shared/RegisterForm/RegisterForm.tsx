@@ -16,6 +16,9 @@ type RegisterFormProps = {
 }
 
 export default function RegisterForm(props: RegisterFormProps) {
+    const dispatch = useAppDispatch();
+    const {avatar, setAvatar} = props;
+
     const [firstName, setFirstName] = useState('');
     const firstNameHandler = (newValue) => setFirstName(newValue.trim());
 
@@ -32,12 +35,8 @@ export default function RegisterForm(props: RegisterFormProps) {
     const descriptionHandler = (newValue) => setDescription(newValue);
 
     const isRegistered = useSelector(
-        (state: RootState) => state.user.isRegistration,
+        (state: RootState) => state.user.isRegisterSuccess,
     );
-
-    const dispatch = useAppDispatch();
-
-    const handleAvatarChange = (value) => props.setAvatar(value);
 
     const handleRegistration = (event) => {
         event.preventDefault();
@@ -48,6 +47,9 @@ export default function RegisterForm(props: RegisterFormProps) {
             email,
             description,
         };
+        if (avatar !== null) {
+            setAvatar(avatar);
+        }
         dispatch(registerUser(registerData));
         setFirstName('');
         setEmail('');
@@ -98,10 +100,10 @@ export default function RegisterForm(props: RegisterFormProps) {
                 maxLength={16}
             />
             <UploadImageButton
-                image={props.avatar}
+                image={avatar}
                 label='Фото профиля'
                 buttonText='Нажмите для загрузки'
-                onChange={handleAvatarChange}
+                onChange={setAvatar}
             />
             <TextField
                 name='description'

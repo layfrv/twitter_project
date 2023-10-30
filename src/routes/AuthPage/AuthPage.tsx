@@ -19,13 +19,14 @@ export default function AuthPage() {
         (state: RootState) => state.user,
     );
 
-    const [avatar, setAvatar] = useState(null);
-
     const [activeTab, setActiveTab] = useState(0);
     const handleClickTab = (id: number) => {
-        dispatch(resetError());
+        if (userError) { dispatch(resetError()); }
         setActiveTab(id);
     };
+
+    const [avatar, setAvatar] = useState(null);
+    const avatarHandler = (newValue) => setAvatar(newValue);
 
     return (
         <div className='auth-page'>
@@ -43,12 +44,12 @@ export default function AuthPage() {
                     {activeTab === 0 ? (
                         <LoginForm
                             avatar={avatar}
-                            setAvatar={setAvatar}
+                            setAvatar={avatarHandler}
                         />
                     ) : (
                         <RegisterForm
-                            setAvatar={setAvatar}
                             avatar={avatar}
+                            setAvatar={avatarHandler}
                         />
                     )}
                     {isLoadingUser && <Loader />}

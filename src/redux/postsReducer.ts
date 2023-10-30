@@ -7,6 +7,7 @@ import {
     GET_POST_BY_ID,
     PIN_POST_ID,
     POST_IMAGE_ID,
+    SEARCH_BY_TAG,
     UNPIN_POST,
     UPLOAD_POST,
 } from '../constants/post';
@@ -14,8 +15,10 @@ import {
     CommentType,
     PostRequest,
     PostType,
+    TagDataType,
     idDataType,
     newCommentType,
+    ImageDataType,
 } from '../types/Post';
 import {RootState} from './store';
 
@@ -52,14 +55,9 @@ export const createPost = createAsyncThunk(
     },
 );
 
-type ImageData = {
-imageFile: FormData;
-selectedPostId: number;
-};
-
 export const uploadImagePost = createAsyncThunk(
     'post/uploadImage',
-    async (data: ImageData, {rejectWithValue}) => {
+    async (data: ImageDataType, {rejectWithValue}) => {
         try {
             const imageFile = data.imageFile;
             const response = await axios.post(
@@ -71,7 +69,7 @@ export const uploadImagePost = createAsyncThunk(
                     },
                 },
             );
-            console.log('upload image succeeded');
+            console.log('photo uploaded');
             return response.data;
         } catch (error) {
             if (error.response && error.response.data.message) {
@@ -112,11 +110,26 @@ export const getPostById = createAsyncThunk(
     },
 );
 
-export const getPostsFeed = createAsyncThunk(
-    'posts/getPostsFeed',
+export const getUserPostsFeed = createAsyncThunk(
+    'posts/getUserPostsFeed',
     async (_, {rejectWithValue}) => {
         try {
             const response = await axios.get(GET_FEED_POSTS);
+            return response.data as PostType[];
+        } catch (error) {
+            if (error.response && error.response.data.message) {
+                return rejectWithValue(error.response.data.message);
+            }
+            return rejectWithValue(error.message);
+        }
+    },
+);
+
+export const getAllPostsFeed = createAsyncThunk(
+    'posts/getAllPostsFeed',
+    async (_, {rejectWithValue}) => {
+        try {
+            const response = await axios.get(GET_POSTS);
             return response.data as PostType[];
         } catch (error) {
             if (error.response && error.response.data.message) {
@@ -153,7 +166,6 @@ export const deletePost = createAsyncThunk(
         const state = getState() as RootState;
         const posts = state.posts.userPosts;
         const selectedPostId = state.posts.selectedPostId;
-        const userId = state.user.user.id;
 
         try {
             const response = await axios.delete(
@@ -212,7 +224,6 @@ export const unpinPost = createAsyncThunk(
     async (postId: number, {rejectWithValue}) => {
         try {
             const response = await axios.patch(`${UNPIN_POST}`);
-            console.log(response.data);
             return response.data as PostType;
         } catch (error) {
             return rejectWithValue(error);
@@ -252,11 +263,26 @@ export const deleteComment = createAsyncThunk(
     },
 );
 
+export const getTags = createAsyncThunk(
+    'posts/getTags',
+    async () => {
+        try {
+            const response = await axios.get(SEARCH_BY_TAG);
+            return response.data as TagDataType[];
+        } catch (error) {
+            return error;
+        }
+    },
+);
+
 const postsSlice = createSlice({
     name: 'posts',
     initialState: {
         userPosts: [],
-        postsFeed: [],
+        postsUserFeed: [],
+        postsAllFeed: [],
+        postsFeedByTag: [],
+        tags: [],
         isLoadingPosts: true,
         selectedPostId: null,
         selectedPost: null as PostType,
@@ -269,23 +295,22 @@ const postsSlice = createSlice({
     reducers: {
         selectPost: (state, action) => {
             state.selectedPostId = action.payload;
-            state.postStatus = 'loading';
         },
         setPinnedPostId: (state, action) => {
             state.pinnedPostId = action.payload;
         },
         sortPostByPinPost: (state) => {
             if (state.pinnedPostId !== null) {
-                if (state.postsFeed.length !== 0) {
-                    const pinnedPost = state.postsFeed.find(
+                if (state.postsUserFeed.length !== 0) {
+                    const pinnedPost = state.postsUserFeed.find(
                         (post) => post.id === state.pinnedPostId,
                     );
                     if (pinnedPost) {
-                        const newPostsFeed = state.postsFeed.filter(
+                        const newPostsFeed = state.postsUserFeed.filter(
                             (post) => post.id !== pinnedPost.id,
                         );
                         newPostsFeed.unshift(pinnedPost);
-                        state.postsFeed = newPostsFeed;
+                        state.postsUserFeed = newPostsFeed;
                     }
                 }
                 if (state.userPosts.length !== 0) {
@@ -303,31 +328,15 @@ const postsSlice = createSlice({
                 }
             }
         },
-        sortPostsByDateAsc: (state) => {
-            const sorted = state.postsFeed.sort((a: PostType, b: PostType) => {
-                if (a.createTime < b.createTime) {
-                    return 1;
-                }
-                if (a.createTime > b.createTime) {
-                    return -1;
-                }
-                return 0;
-            });
-            state.comments = sorted;
-        },
-        sortPostsByDateDesc: (state) => {
-            const sorted = state.postsFeed.sort((a: PostType, b: PostType) => {
-                const aDate = new Date(a.createTime);
-                const bDate = new Date(b.createTime);
-                if (a.createTime < b.createTime) {
-                    return -1;
-                }
-                if (a.createTime > b.createTime) {
-                    return 1;
-                }
-                return 0;
-            });
-            state.comments = sorted;
+        filterPostsByTag: (state, action) => {
+            if (action.payload.typeNews === 'userNews') {
+                const filtered = state.postsUserFeed.filter((post) => post.tags.some((tag) => tag.title === action.payload.title));
+                state.postsFeedByTag = filtered;
+            }
+            if (action.payload.typeNews === 'allNews') {
+                const filtered = state.postsAllFeed.filter((post) => post.tags.some((tag) => tag.title === action.payload.title));
+                state.postsFeedByTag = filtered;
+            }
         },
     },
     extraReducers: (builder) => {
@@ -413,18 +422,33 @@ const postsSlice = createSlice({
                 state.error = action.payload;
                 state.isLoadingPosts = false;
             })
-            .addCase(getPostsFeed.pending, (state) => {
+            .addCase(getUserPostsFeed.pending, (state) => {
                 state.isLoadingPosts = true;
             })
             .addCase(
-                getPostsFeed.fulfilled,
+                getUserPostsFeed.fulfilled,
                 (state, action: PayloadAction<PostType[]>) => {
-                    state.postsFeed = action.payload;
+                    state.postsUserFeed = action.payload;
                     state.error = null;
                     state.isLoadingPosts = false;
                 },
             )
-            .addCase(getPostsFeed.rejected, (state, action) => {
+            .addCase(getUserPostsFeed.rejected, (state, action) => {
+                state.error = action.payload;
+                state.isLoadingPosts = false;
+            })
+            .addCase(getAllPostsFeed.pending, (state) => {
+                state.isLoadingPosts = true;
+            })
+            .addCase(
+                getAllPostsFeed.fulfilled,
+                (state, action: PayloadAction<PostType[]>) => {
+                    state.postsAllFeed = action.payload;
+                    state.error = null;
+                    state.isLoadingPosts = false;
+                },
+            )
+            .addCase(getAllPostsFeed.rejected, (state, action) => {
                 state.error = action.payload;
                 state.isLoadingPosts = false;
             })
@@ -460,8 +484,11 @@ const postsSlice = createSlice({
                 state.pinnedPostId = action.payload.pinnedPostId;
                 postsSlice.actions.sortPostByPinPost();
             })
-            .addCase(unpinPost.fulfilled, (state, action) => {
+            .addCase(unpinPost.fulfilled, (state) => {
                 state.pinnedPostId = null;
+            })
+            .addCase(getTags.fulfilled, (state, action) => {
+                state.tags = action.payload;
             });
     },
 });
@@ -470,7 +497,6 @@ export const {
     selectPost,
     setPinnedPostId,
     sortPostByPinPost,
-    sortPostsByDateAsc,
-    sortPostsByDateDesc,
+    filterPostsByTag,
 } = postsSlice.actions;
 export default postsSlice.reducer;

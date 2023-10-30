@@ -1,46 +1,48 @@
 import {useEffect} from 'react';
 import {useSelector} from 'react-redux';
-import {useHistory} from 'react-router-dom';
+import {useHistory, useLocation} from 'react-router-dom';
 import {RootState, useAppDispatch, useAppSelector} from '../../redux/store';
-import {getUserById} from '../../redux/usersReducer';
+import {getPostsByUser, getUserById} from '../../redux/usersReducer';
 import Layout from '../../shared/Layout';
 import PostCard from '../../shared/PostCard';
 import ProfileCard from '../../shared/ProfileCard';
 import Loader from '../../ui/Loader';
 import ReturnButton from '../../ui/ReturnButton';
-import './UserPage.scss';
+import './UserByIdPage.scss';
 
-export default function UserPage() {
+export default function UserByIdPage() {
+    const history = useHistory();
     const dispatch = useAppDispatch();
-    const {selectedUser, selectedUserId, selectedUserStatus} = useSelector(
+    const {selectedUser, selectedUserStatus} = useSelector(
         (state: RootState) => state.users,
     );
 
+    const location = useLocation();
+    const userId = location.pathname.split('/').slice(-1);
+
     useEffect(() => {
-        dispatch(getUserById(selectedUserId));
+        dispatch(getUserById(userId)).then(() => dispatch(getPostsByUser(userId)));
     }, []);
 
-    const {postStatus, userPosts, isLoadingPosts} = useAppSelector(
-        (state: RootState) => state.posts,
+    const {userPosts, userPostsStatus} = useAppSelector(
+        (state: RootState) => state.users,
     );
-
-    const history = useHistory();
 
     const returnButtonHandler = () => {
         history.goBack();
     };
 
-    if (!selectedUser) {
+    if (selectedUser === null) {
         return null;
     }
 
     return (
         <Layout>
-            <div className='user-page'>
+            <div className='user-id-page'>
                 <ReturnButton onClickHandler={returnButtonHandler} />
 
-                <div className='user-page__content'>
-                    <div className='user-page__content-card'>
+                <div className='user-id-page__content'>
+                    <div className='user-id-page__content-card'>
                         {selectedUserStatus === 'loading' && <Loader />}
                         {selectedUserStatus === 'error' && <h3>Ошибка загрузки</h3>}
                         {selectedUserStatus === 'succeeded' && (
@@ -51,14 +53,15 @@ export default function UserPage() {
                         )}
                     </div>
 
-                    <div className='user-page__content-posts'>
-                        {isLoadingPosts && <Loader />}
-                        {!isLoadingPosts && selectedUser.posts.map((post) => (
+                    <div className='user-id-page__content-posts'>
+                        {userPostsStatus === 'loading' && <Loader />}
+                        {userPostsStatus === 'error' && <h2>Ошибка загрузки постов</h2>}
+                        {userPostsStatus === 'succeeded' && userPosts.map((post) => (
                             <PostCard
+                                hasMenu={false}
                                 {...post}
                                 key={post.id}
                                 typePost='private'
-                                nickname=''
                                 creator={selectedUser}
                             />
                         ))}

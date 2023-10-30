@@ -23,7 +23,7 @@ export default function SubscriptionsPage() {
     const [filteredUsers, setFilteredUsers] = useState(users);
 
     useEffect(() => {
-        if (searchInputValue !== '') {
+        if (searchInputValue.length) {
             const filtered = users.filter((user) => (
                 user.lastName.toLocaleLowerCase().includes(searchInputValue.toLowerCase())
             || user.firstName.toLocaleLowerCase().includes(searchInputValue.toLowerCase())
@@ -53,7 +53,7 @@ export default function SubscriptionsPage() {
                     {usersStatus === 'error' && (
                         <h2>Ошибка при загрузке пользователей</h2>
                     )}
-                    {usersStatus === 'succeeded' && filteredUsers.map((user) => (
+                    {usersStatus === 'succeeded' && filteredUsers?.map((user) => (
                         <ProfileCardMini
                             type='anotherUser'
                             user={user}

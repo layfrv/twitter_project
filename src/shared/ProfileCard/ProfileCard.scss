@@ -5,7 +5,7 @@
 	flex-direction: column;
 	gap: 16px;
 	border-radius: 12px;
-	padding: 16px;
+	padding: 20px;
 	border: 1px solid $font-color_inactive;
 	background: $background-color_white;
 	justify-content: space-between;
@@ -31,10 +31,11 @@
 		@media screen and (max-width: $max-width_desktop-medium) {
 			width: 100%;
 		}
-	}
 
-	&_menu {
-		position: relative;
+		&_menu {
+			margin-right: 20px;
+			align-self: flex-start;
+		}
 	}
 
 	&__body {

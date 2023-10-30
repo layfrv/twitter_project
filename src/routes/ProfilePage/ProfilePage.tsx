@@ -111,7 +111,7 @@ export default function ProfilePage() {
                                     {...post}
                                     key={post.id}
                                     typePost='private'
-                                    nickname=''
+                                    hasMenu
                                     creator={user}
                                     openEditModalHandler={openEditModalHandler}
                                 />

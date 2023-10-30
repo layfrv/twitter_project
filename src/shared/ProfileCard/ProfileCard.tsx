@@ -1,20 +1,15 @@
 import {useMemo} from 'react';
 import {useMediaQuery} from 'react-responsive';
-import {useHistory} from 'react-router-dom';
-import {RoutePaths} from '../../constants/routes';
 import {useAppDispatch, useAppSelector} from '../../redux/store';
 import {subscribeUser, unsubscribeUser} from '../../redux/userReducer';
-import {selectUserId} from '../../redux/usersReducer';
 import {UserType} from '../../types/User';
 import Button from '../../ui/Button';
 import DropdownMenu from '../../ui/DropDownMenu/DropdownMenu';
-import ProfileCardHeader from '../../ui/ProfileHeader';
-import {ReactComponent as IconIsSubscribed} from '../../ui/icons/isSubscribed.svg';
-import {ReactComponent as IconNotSubscribed} from '../../ui/icons/notSubscribe.svg';
 import noneAvatar from '../../ui/images/none-avatar.png';
 import createNickname from '../../utils/createNickname';
 import getFileUrl from '../../utils/getFileUrl';
 import isSubscribedOnUser from '../../utils/isSubscribedOnUser';
+import ProfileCardHeader from '../ProfileHeader';
 import './ProfileCard.scss';
 
 type DropdownMenuType = {
@@ -32,7 +27,7 @@ secondaryButtonHandler?: () => void;
 
 const ProfileCard = (props: profileCard) => {
     const dispatch = useAppDispatch();
-    const thisUser = useAppSelector((state) => state.user.user);
+    const userId = useAppSelector((state) => state.user.user.id);
 
     const isDesktop = useMediaQuery({
         query: '(min-width: 1050px)',
@@ -43,20 +38,7 @@ const ProfileCard = (props: profileCard) => {
         [props.user],
     );
 
-    const isSubscribed = isSubscribedOnUser(props?.user?.id, props?.user?.subscriptions);
-
-    const history = useHistory();
-
-    const selectUserOnClick = () => {
-        if (props.user.id !== thisUser.id) {
-            dispatch(selectUserId(props.user.id));
-            const newUrl = RoutePaths.ROUTE_USER_ID.replace(
-                ':id',
-                props.user.id.toString(),
-            );
-            history.push(newUrl);
-        }
-    };
+    const isSubscribed = isSubscribedOnUser(userId, props?.user?.subscriptions);
 
     const subscribeHandler = () => {
         dispatch(subscribeUser(props.user.id));
@@ -74,13 +56,10 @@ const ProfileCard = (props: profileCard) => {
         <>
             <div className='profile-card'>
                 <div
-                    onKeyDown={selectUserOnClick}
                     className='profile-card__header'
-                    onClick={selectUserOnClick}
-                    role="link"
-                    tabIndex={0}
                 >
                     <ProfileCardHeader
+                        userId={props.user.id}
                         avatarUrl={avatarUrl}
                         firstName={props.user.firstName}
                         lastName={props.user.lastName}
@@ -115,28 +94,22 @@ const ProfileCard = (props: profileCard) => {
                             </>
                         )}
 
-                        {props.type === 'anotherUser' && isSubscribed && (isDesktop ? (
-                            <Button
-                                primary
-                                label='Отписаться'
-                                onClick={unsubscribeHandler}
-                            />
-                        ) : (
-                            <button onClick={unsubscribeHandler}>
-                                <IconIsSubscribed />
-                            </button>
-                        ))}
-                        {props.type === 'anotherUser' && !isSubscribed && (isDesktop ? (
-                            <Button
-                                secondary
-                                label='Подписаться'
-                                onClick={subscribeHandler}
-                            />
-                        ) : (
-                            <button onClick={subscribeHandler}>
-                                <IconNotSubscribed />
-                            </button>
-                        ))}
+                        {props.type === 'anotherUser' && isSubscribed
+                            && (
+                                <Button
+                                    primary
+                                    label='Отписаться'
+                                    onClick={unsubscribeHandler}
+                                />
+                            )}
+                        {props.type === 'anotherUser' && !isSubscribed
+                            && (
+                                <Button
+                                    secondary
+                                    label='Подписаться'
+                                    onClick={subscribeHandler}
+                                />
+                            )}
                     </div>
                 </div>
             </div>

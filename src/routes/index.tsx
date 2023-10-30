@@ -6,9 +6,14 @@ import NewsPage from './NewsPage';
 import PostPage from './PostPage';
 import ProfilePage from './ProfilePage';
 import SubscriptionPage from './SubscriptionsPage';
-import UserPage from './UserPage';
+import UserByIdPage from './UserByIdPage';
 
 export const router = [
+    {
+        path: RoutePaths.ROUTE_INDEX,
+        isPrivate: false,
+        element: <AuthPage />,
+    },
     {
         path: RoutePaths.ROUTE_LOGIN,
         isPrivate: false,
@@ -27,7 +32,7 @@ export const router = [
     {
         path: RoutePaths.ROUTE_USER_ID,
         isPrivate: true,
-        element: <UserPage />,
+        element: <UserByIdPage />,
     },
     {
         path: RoutePaths.ROUTE_SUBSCRIPTIONS,

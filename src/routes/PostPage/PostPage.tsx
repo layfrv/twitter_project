@@ -19,7 +19,6 @@ import './PostPage.scss';
 export default function PostPage() {
     const dispatch = useAppDispatch();
     const history = useHistory();
-    const currentPostId = useAppSelector((state) => state.posts.selectedPostId);
     const isLoadingPosts = useAppSelector((state) => state.posts.isLoadingPosts);
     const isLoadingComments = useAppSelector(
         (state) => state.posts.isLoadingComments,
@@ -49,7 +48,7 @@ export default function PostPage() {
     const onClickLike = async () => {
         setLiked((prevIsLiked) => !prevIsLiked);
         setLikesCount((prevLikesCount) => isLiked ? prevLikesCount - 1 : prevLikesCount + 1);
-        await dispatch(likedPost(currentPostId));
+        await dispatch(likedPost(postId));
     };
 
     const returnButtonHandler = () => {
@@ -124,7 +123,7 @@ export default function PostPage() {
                         </div>
 
                         <div className='post-page__content_comments'>
-                            {!isLoadingComments && <CommentsList postId={selectedPost.id} />}
+                            {!isLoadingComments && <CommentsList postId={postId} />}
                         </div>
                     </div>
                 </div>

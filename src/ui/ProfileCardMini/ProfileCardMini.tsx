@@ -1,16 +1,13 @@
 import {useMemo} from 'react';
 import {useMediaQuery} from 'react-responsive';
-import {useHistory} from 'react-router-dom';
-import {RoutePaths} from '../../constants/routes';
 import {useAppDispatch, useAppSelector} from '../../redux/store';
 import {subscribeUser, unsubscribeUser} from '../../redux/userReducer';
-import {selectUserId} from '../../redux/usersReducer';
+import ProfileCardHeader from '../../shared/ProfileHeader';
 import {UserType} from '../../types/User';
 import createNickname from '../../utils/createNickname';
 import getFileUrl from '../../utils/getFileUrl';
 import isSubscribedOnUser from '../../utils/isSubscribedOnUser';
 import Button from '../Button';
-import ProfileCardHeader from '../ProfileHeader';
 import {ReactComponent as IconIsSubscribed} from '../icons/isSubscribed.svg';
 import {ReactComponent as IconNotSubscribed} from '../icons/notSubscribe.svg';
 import noneAvatar from '../images/none-avatar.png';
@@ -24,7 +21,6 @@ buttonHandler?: () => void;
 
 const ProfileCardMini = (props: ProfileCardMini) => {
     const dispatch = useAppDispatch();
-    const history = useHistory();
     const userSubscriptions = useAppSelector((state) => state.user.subscriptions);
 
     const isDesktop = useMediaQuery({
@@ -37,18 +33,9 @@ const ProfileCardMini = (props: ProfileCardMini) => {
     );
 
     const isSubscribed = useMemo(
-        () => props.user !== null && isSubscribedOnUser(props.user.id, userSubscriptions),
+        () => userSubscriptions !== null && isSubscribedOnUser(props.user.id, userSubscriptions),
         [props.user],
     );
-
-    const selectUserOnClick = () => {
-        dispatch(selectUserId(props.user.id));
-        const newUrl = RoutePaths.ROUTE_USER_ID.replace(
-            ':id',
-            props.user.id.toString(),
-        );
-        history.push(newUrl);
-    };
 
     const subscribeHandler = () => {
         dispatch(subscribeUser(props.user.id));
@@ -67,12 +54,9 @@ const ProfileCardMini = (props: ProfileCardMini) => {
             <div className='profile-card-mini'>
                 <div
                     className='profile-card-mini__header'
-                    onClick={selectUserOnClick}
-                    onKeyDown={selectUserOnClick}
-                    role='link'
-                    tabIndex={0}
                 >
                     <ProfileCardHeader
+                        userId={props.user.id}
                         avatarUrl={avatarUrl}
                         firstName={props.user.firstName}
                         lastName={props.user.lastName}

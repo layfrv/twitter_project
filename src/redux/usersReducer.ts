@@ -1,8 +1,9 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
 import axios from '../axios';
+import {GET_POST_BY_ID} from '../constants/post';
 import {GET_USERS} from '../constants/user';
-import {UserType} from '../types/User';
 import {PostType} from '../types/Post';
+import {UserType} from '../types/User';
 
 export const getUsers = createAsyncThunk(
     'users/getUsers',
@@ -28,6 +29,18 @@ export const getUserById = createAsyncThunk(
     },
 );
 
+export const getPostsByUser = createAsyncThunk(
+    'users/getPostsByUser',
+    async (id: number) => {
+        try {
+            const response = await axios.get(`${GET_POST_BY_ID}?userId=${id}`);
+            return response.data;
+        } catch (error) {
+            return error;
+        }
+    },
+);
+
 const userSlice = createSlice({
     name: 'users',
     initialState: {
@@ -38,6 +51,7 @@ const userSlice = createSlice({
         selectedUser: null,
         selectedUserStatus: 'loading',
         userPosts: [] as PostType[],
+        userPostsStatus: 'loading',
     },
     reducers: {
         selectUserId: (state, action) => {
@@ -66,6 +80,16 @@ const userSlice = createSlice({
             })
             .addCase(getUserById.rejected, (state) => {
                 state.selectedUserStatus = 'error';
+            })
+            .addCase(getPostsByUser.pending, (state) => {
+                state.userPostsStatus = 'loading';
+            })
+            .addCase(getPostsByUser.fulfilled, (state, action) => {
+                state.userPosts = action.payload.reverse();
+                state.userPostsStatus = 'succeeded';
+            })
+            .addCase(getPostsByUser.rejected, (state) => {
+                state.userPostsStatus = 'error';
             });
     },
 });

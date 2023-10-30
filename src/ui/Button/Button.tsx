@@ -10,6 +10,7 @@ primary?: boolean;
 secondary?: boolean;
 onClick?: MouseEventHandler<HTMLButtonElement>;
 isDisabled?: object;
+width?: string;
 };
 
 export default function Button(props: ButtonPropsType) {
@@ -26,6 +27,7 @@ export default function Button(props: ButtonPropsType) {
             className={buttonClass}
             onClick={onClick}
             {...isDisabled}
+            style={props.width && {width: props.width}}
         >
             {label}
         </button>

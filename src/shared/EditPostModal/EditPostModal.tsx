@@ -169,7 +169,7 @@ export default function EditPostModal(props: EditPostModalProps) {
                             <div className='edit-post-modal__tags_elements'>
                                 {tags.map((tagElement, id) => (
                                     <Tag
-                                        text={tag}
+                                        text={tagElement}
                                         key={id}
                                     />
                                 ))}
@@ -200,7 +200,7 @@ export default function EditPostModal(props: EditPostModalProps) {
             </div>
 
             {successModal && (
-                <ModalWrapper>
+                <ModalWrapper width='max-content'>
                     <div className='edit-post-modal__header'>
                         <h2>Пост отредактирован!</h2>
                         <CloseIcon
@@ -214,7 +214,7 @@ export default function EditPostModal(props: EditPostModalProps) {
             )}
 
             {errorModal && (
-                <ModalWrapper>
+                <ModalWrapper width='max-content'>
                     <div className='edit-post-modal__header'>
                         <h2>Ошибка редактирования поста</h2>
                         <CloseIcon

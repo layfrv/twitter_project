@@ -24,6 +24,7 @@ textarea {
 	padding: 0;
 	white-space: normal;
 	background-color: inherit;
+	font-family: 'Nunito';
 }
 
 a,
@@ -80,6 +81,7 @@ input::-ms-clear {
 }
 
 h1 {
+	font-family: 'Nunito';
 	font-size: 32px;
 	font-weight: $font-bold;
 

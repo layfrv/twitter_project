@@ -4,7 +4,7 @@ import {
 } from '@reduxjs/toolkit';
 import Cookies from 'js-cookie';
 import axios from '../axios';
-import {AUTH_LOGIN, AUTH_REGISTER} from '../constants/auth';
+import {AUTH_LOGIN, AUTH_REFRESH, AUTH_REGISTER} from '../constants/auth';
 import {
     EDIT_USER_DATA,
     GET_USER,
@@ -13,6 +13,21 @@ import {
 } from '../constants/user';
 import {LoginRequest, RegisterRequest} from '../types/Auth';
 import {EditUserDataType, UserType} from '../types/User';
+import {setPinnedPostId} from './postsReducer';
+
+export const getAccessToken = createAsyncThunk(
+    'getAccessToken',
+    async (refreshToken: string, {rejectWithValue}) => {
+        const request = {refreshToken};
+        try {
+            const response = await axios.post(AUTH_REFRESH, request);
+            Cookies.set('accessToken', response.data.accessToken, {secure: true});
+            return true;
+        } catch (error) {
+            return rejectWithValue(error.message);
+        }
+    },
+);
 
 export const registerUser = createAsyncThunk('user/registerUser', async (data: RegisterRequest, {rejectWithValue}) => {
     try {
@@ -22,9 +37,27 @@ export const registerUser = createAsyncThunk('user/registerUser', async (data: R
         if (error.response && error.response.data) {
             return rejectWithValue(error.response.data);
         }
-        return rejectWithValue(error);
+        return rejectWithValue(error.message);
     }
 });
+
+export const uploadAvatar = createAsyncThunk(
+    'user/uploadAvatar',
+    async (data: File, {rejectWithValue}) => {
+        try {
+            const imageFile = new FormData();
+            imageFile.append('file', data);
+            const response = await axios.post(UPLOAD_AVATAR_USER, imageFile, {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                },
+            });
+            return true;
+        } catch (error) {
+            return rejectWithValue(error.message);
+        }
+    },
+);
 
 export const loginUser = createAsyncThunk(
     'user/loginUser',
@@ -37,7 +70,9 @@ export const loginUser = createAsyncThunk(
             Cookies.set('refreshToken', tokensResponse.data.refreshToken, {
                 secure: true,
             });
+
             const userResponse = await axios.get(GET_USER);
+
             return userResponse.data as UserType;
         } catch (error) {
             if (error.response && error.response.data.message) {
@@ -50,7 +85,7 @@ export const loginUser = createAsyncThunk(
 
 export const logoutUser = createAsyncThunk(
     'user/logoutUser',
-    async (_, {dispatch}) => {
+    async () => {
         try {
             await Cookies.remove('refreshToken');
             await Cookies.remove('accessToken');
@@ -63,31 +98,15 @@ export const logoutUser = createAsyncThunk(
 
 export const getUser = createAsyncThunk(
     'user/getUser',
-    async (_, {rejectWithValue}) => {
+    async (_, {rejectWithValue, dispatch}) => {
         try {
             const response = await axios.get(GET_USER);
+            dispatch(setPinnedPostId(response.data.pinnedPostId));
             return response.data as UserType;
         } catch (error) {
             if (error.response && error.response.data.message) {
                 return rejectWithValue(error.response.data.message);
             }
-            return rejectWithValue(error.message);
-        }
-    },
-);
-
-export const uploadAvatar = createAsyncThunk(
-    'user/uploadAvatar',
-    async (data: FormData, {rejectWithValue}) => {
-        try {
-            const response = await axios.post(UPLOAD_AVATAR_USER, data, {
-                headers: {
-                    'Content-Type': 'multipart/form-data',
-                },
-            });
-            // console.log('upload photo succeed');
-            return true;
-        } catch (error) {
             return rejectWithValue(error.message);
         }
     },
@@ -138,7 +157,7 @@ export const subscribeUser = createAsyncThunk(
 
 export const unsubscribeUser = createAsyncThunk(
     'user/unsubscribeUser',
-    async (id: number, {rejectWithValue, dispatch}) => {
+    async (id: number, {rejectWithValue}) => {
         const subscribeUrl = SUBSCRIBE_USER_ID.replace('{id}', id.toString());
         try {
             const response = await axios.delete(subscribeUrl, {
@@ -157,7 +176,8 @@ const userSlice = createSlice({
         user: null as null | UserType,
         subscriptions: null as null | UserType[],
         isLoadingUser: false,
-        isRegistration: false,
+        imageFromRegister: null,
+        isRegisterSuccess: false,
         isUpdated: false,
         userError: null,
         editError: null,
@@ -172,6 +192,16 @@ const userSlice = createSlice({
     },
     extraReducers: (builder) => {
         builder
+            .addCase(getAccessToken.pending, (state) => {
+                state.isLoadingUser = false;
+            })
+            .addCase(getAccessToken.fulfilled, (state) => {
+                state.isLoadingUser = true;
+            })
+            .addCase(getAccessToken.rejected, (state, action) => {
+                state.isLoadingUser = true;
+                state.userError = action.payload;
+            })
             .addCase(registerUser.pending, (state) => {
                 state.isLoadingUser = true;
                 state.userError = null;
@@ -179,7 +209,7 @@ const userSlice = createSlice({
             .addCase(registerUser.fulfilled, (state) => {
                 state.isLoadingUser = false;
                 state.userError = null;
-                state.isRegistration = true;
+                state.isRegisterSuccess = true;
             })
             .addCase(registerUser.rejected, (state, action) => {
                 state.isLoadingUser = false;
@@ -229,6 +259,7 @@ const userSlice = createSlice({
                 state.isUpdated = true;
                 state.isLoadingUser = false;
                 state.userError = null;
+                state.imageFromRegister = null;
             })
             .addCase(uploadAvatar.rejected, (state, action) => {
                 state.isLoadingUser = false;

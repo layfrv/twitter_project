@@ -1,4 +1,5 @@
 export enum RoutePaths {
+  ROUTE_INDEX = '/',
   ROUTE_LOGIN = '/login',
   ROUTE_PROFILE = '/profile',
   ROUTE_NEWS = '/news',

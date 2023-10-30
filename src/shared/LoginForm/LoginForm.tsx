@@ -18,11 +18,9 @@ export default function LoginForm(props: LoginFormProps) {
     const dispatch = useAppDispatch();
     const history = useHistory();
 
-    const {user, userError, isRegistration} = useSelector(
+    const {userError, isRegisterSuccess} = useSelector(
         (state: RootState) => state.user,
     );
-
-    const {avatar, setAvatar} = props;
 
     const [activeCheckbox, setActiveCheckbox] = useState(false);
     const onClickCheckbox = (event) => {
@@ -42,25 +40,25 @@ export default function LoginForm(props: LoginFormProps) {
         event.preventDefault();
         const loginData = {email, password};
 
-        if (avatar && isRegistration) {
-            const imageFile = new FormData();
-            imageFile.append('file', avatar);
-            await dispatch(uploadAvatar(imageFile));
-            await dispatch(loginUser(loginData));
+        const action = await dispatch(loginUser(loginData));
+        if (props.avatar !== null && isRegisterSuccess) {
+            await dispatch(uploadAvatar(props.avatar));
+        }
+
+        if (loginUser.fulfilled.match(action)) {
+            const user = action.payload;
             if (user !== null) {
                 history.push(RoutePaths.ROUTE_PROFILE);
             }
-        } else {
-            await dispatch(loginUser(loginData)).then(() => history.push(RoutePaths.ROUTE_PROFILE));
-            if (userError === null && activeCheckbox) {
-                localStorage.setItem('email', loginData.email);
-                localStorage.setItem('password', loginData.password);
-            }
+        }
+
+        if (activeCheckbox) {
+            localStorage.setItem('email', loginData.email);
+            localStorage.setItem('password', loginData.password);
         }
 
         setEmail('');
         setPassword('');
-        setAvatar(null);
     };
 
     return (

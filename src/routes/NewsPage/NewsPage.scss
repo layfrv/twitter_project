@@ -11,9 +11,13 @@
 		justify-content: space-between;
 		align-items: center;
 
-		& > h1 {
-			margin-left: 0;
-			padding-left: 0;
+		&_headers {
+			display: flex;
+			gap: 30px;
+
+			& > button > h1 {
+				text-align: left;
+			}
 		}
 
 		&_icon {
@@ -22,11 +26,24 @@
 			cursor: pointer;
 			background-color: inherit;
 		}
+
+		@media screen and (max-width: 720px) {
+			flex-direction: column;
+			align-items: flex-start;
+			gap: 20px;
+		}
 	}
 
 	&__content {
 		display: flex;
 		flex-direction: column;
 		gap: 24px;
+		width: 100%;
+
+		&_tags {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 8px;
+		}
 	}
 }
