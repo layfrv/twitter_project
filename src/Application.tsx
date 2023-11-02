@@ -1,9 +1,7 @@
 import {useEffect} from 'react';
-import {
-    Route,
+import {Route,
     BrowserRouter as Router,
-    Switch,
-} from 'react-router-dom';
+    Switch} from 'react-router-dom';
 import RouterWrapper from './RouterWrapper';
 import {useAppDispatch, useAppSelector} from './redux/store';
 import {getUser} from './redux/userReducer';

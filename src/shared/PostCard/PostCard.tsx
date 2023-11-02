@@ -2,7 +2,6 @@
 import {useMemo, useState} from 'react';
 import {useMediaQuery} from 'react-responsive';
 import {useHistory} from 'react-router-dom';
-import {BASE_URL} from '../../constants/auth';
 import {RoutePaths} from '../../constants/routes';
 import {GET_FILE} from '../../constants/user';
 import {
@@ -28,20 +27,20 @@ import ProfileCardHeader from '../ProfileHeader';
 import './PostCard.scss';
 
 export type PostType = {
-id: number;
-title: string;
-text: string;
-creatorId: number;
-likesCount: number;
-isLiked: boolean;
-imageId: number;
-tags: TagType[];
-createTime: Date;
-nickname?: string;
-creator: UserType;
-typePost: 'private' | 'public';
-openEditModalHandler?: () => void;
-hasMenu: boolean;
+  id: number;
+  title: string;
+  text: string;
+  creatorId: number;
+  likesCount: number;
+  isLiked: boolean;
+  imageId: number;
+  tags: TagType[];
+  createTime: Date;
+  nickname?: string;
+  creator: UserType;
+  typePost: 'private' | 'public';
+  openEditModalHandler?: () => void;
+  hasMenu: boolean;
 };
 
 export default function PostCard(props: PostType) {
@@ -118,10 +117,10 @@ export default function PostCard(props: PostType) {
         ? props.creator.nickname
         : createNickname(props.creator?.email);
 
-    const postImage = `${BASE_URL}${GET_FILE}${props.imageId}`;
+    const postImage = `${process.env.REACT_APP_BACKEND_URL}${GET_FILE}${props.imageId}`;
 
     const avatarUrl = props.creator?.avatarId !== null
-        ? `${BASE_URL}${GET_FILE}${props.creator.avatarId}`
+        ? `${process.env.REACT_APP_BACKEND_URL}${GET_FILE}${props.creator.avatarId}`
         : noneAvatar;
 
     const isAuthor = isAuthorOfPost(props.creator.id, userId);
@@ -146,10 +145,10 @@ export default function PostCard(props: PostType) {
                         nickName={createdNickname}
                     />
                     {isPinnedPost && (
-                        <PinIcon className='post__content_header_pin-icon' />
+                        <PinIcon className="post__content_header_pin-icon" />
                     )}
                     {props.hasMenu && (
-                        <div className='post__content_header_menu'>
+                        <div className="post__content_header_menu">
                             <DropdownMenu
                                 items={
                                     isAuthor
@@ -165,16 +164,16 @@ export default function PostCard(props: PostType) {
 
             {hasImage && (
                 <div
-                    className='post__with-image__image'
+                    className="post__with-image__image"
                     onClick={selectOnClickAndRedirectPost}
                     onKeyDown={selectOnClickAndRedirectPost}
                     role="link"
                     tabIndex={0}
                 >
                     <img
-                        alt='post'
+                        alt="post"
                         src={postImage}
-                        loading='lazy'
+                        loading="lazy"
                     />
                 </div>
             )}
@@ -197,10 +196,12 @@ export default function PostCard(props: PostType) {
                         />
 
                         {props.typePost === 'public' && isPinnedPost && isDesktop && (
-                            <div className='post__content_header_pin-icon'><PinIcon /></div>
+                            <div className="post__content_header_pin-icon">
+                                <PinIcon />
+                            </div>
                         )}
                         {props.hasMenu && props.typePost === 'public' && isDesktop && (
-                            <div className='post__content_header_menu'>
+                            <div className="post__content_header_menu">
                                 <DropdownMenu
                                     items={
                                         isAuthor
@@ -226,19 +227,22 @@ export default function PostCard(props: PostType) {
                                 : 'post__content_body_header'
                         }
                     >
-                        <div className={
-                            hasImage
-                                ? 'post__with-image__content_body_header_title'
-                                : 'post__content_body_header_title'
-                        }
+                        <div
+                            className={
+                                hasImage
+                                    ? 'post__with-image__content_body_header_title'
+                                    : 'post__content_body_header_title'
+                            }
                         >
                             <h3>{props.title}</h3>
                         </div>
                         {isPinnedPost && props.typePost === 'private' && (
-                            <div className='post__content_body_pin-icon'><PinIcon /></div>
+                            <div className="post__content_body_pin-icon">
+                                <PinIcon />
+                            </div>
                         )}
                         {props.hasMenu && props.typePost === 'private' && (
-                            <div className='post__content_body_menu'>
+                            <div className="post__content_body_menu">
                                 <DropdownMenu
                                     items={dropdownMenuPrivatePostItems}
                                     selectOnClick={selectOnClick}
@@ -247,10 +251,16 @@ export default function PostCard(props: PostType) {
                         )}
                     </div>
 
-                    <p className={hasImage ? 'post__with-image__content_body_text' : 'post__content_body_text'}>
+                    <p
+                        className={
+                            hasImage
+                                ? 'post__with-image__content_body_text'
+                                : 'post__content_body_text'
+                        }
+                    >
                         {props.text}
                     </p>
-                    <div className='post__content_body_tags'>
+                    <div className="post__content_body_tags">
                         {props.tags?.map((tag: any) => (
                             <Tag
                                 text={tag.title}
@@ -273,7 +283,7 @@ export default function PostCard(props: PostType) {
                         isLiked={isLiked}
                         onClickHandler={onClickLike}
                     />
-                    <div className='post__content_footer_data'>
+                    <div className="post__content_footer_data">
                         <PostDate date={props.createTime} />
                     </div>
                 </div>

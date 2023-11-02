@@ -1,11 +1,10 @@
 import Axios, {AxiosInstance, InternalAxiosRequestConfig} from 'axios';
 import Cookies from 'js-cookie';
-import {BASE_URL} from './constants/auth';
 import {store} from './redux/store';
 import {getAccessToken, logoutUser} from './redux/userReducer';
 
 const axios: AxiosInstance = Axios.create({
-    baseURL: BASE_URL,
+    baseURL: process.env.REACT_APP_BACKEND_URL,
     withCredentials: true,
 });
 
