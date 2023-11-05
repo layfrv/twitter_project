@@ -1,13 +1,13 @@
-import {useState} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
-import {RootState} from '../../redux/store';
-import {resetError} from '../../redux/userReducer';
+import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '../../redux/store';
+import { resetError } from '../../redux/userReducer';
 import LoginForm from '../../shared/LoginForm';
 import RegisterForm from '../../shared/RegisterForm';
+import TabsControl from '../../shared/TabsControl';
 import AlertMessage from '../../ui/AlertMessage';
 import Loader from '../../ui/Loader';
-import {ReactComponent as Logo} from '../../ui/icons/logo.svg';
-import TabsControl from '../../views/TabsControl';
+import { ReactComponent as Logo } from '../../ui/icons/logo.svg';
 import './AuthPage.scss';
 
 const buttonsTab = ['Авторизация', 'Регистрация'];

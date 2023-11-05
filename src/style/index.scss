@@ -21,7 +21,7 @@ input {
 	font-weight: 400;
 	color: #312c3a;
 	line-height: 24px;
-	outline: none;
+	outline: 1px solid #651fff;
 }
 
 input:invalid {
@@ -34,6 +34,6 @@ textarea:focus {
 }
 
 textarea {
-	outline: none;
+	outline: 1px solid #651fff;
 	overflow-y: scroll;
 }

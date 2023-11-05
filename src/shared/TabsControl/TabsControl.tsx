@@ -1,4 +1,3 @@
-import React from 'react';
 import './TabsControl.scss';
 
 interface ITabsControlProps {
@@ -12,14 +11,15 @@ export default function TabsControl(props: ITabsControlProps) {
 
     return (
         <div className='button-toggle'>
-            {buttons.map((button, i) => (
+            {buttons.map((buttonText, i) => (
                 <button
                     key={i}
-                    name={button}
+                    name={buttonText}
                     onClick={() => onClick(i)}
                     className={i === clickedId ? 'button-toggle-btn__active' : 'button-toggle-btn'}
+                    role="tab"
                 >
-                    {button}
+                    {buttonText}
                 </button>
             ))}
         </div>

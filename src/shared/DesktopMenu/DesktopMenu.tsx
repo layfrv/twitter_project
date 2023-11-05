@@ -58,13 +58,13 @@ export default function DesktopMenu(props: DesktopMenuProps) {
                         className='desktop-menu__icon'
                         onClick={() => setMenuOpen(!isMenuOpen)}
                     />
-                    <p
+                    <li
                         className={
                             isMenuOpen ? 'desktop-menu__items_item_text' : 'display-none'
                         }
                     >
                         Новости
-                    </p>
+                    </li>
                 </NavLink>
 
                 <NavLink
@@ -76,13 +76,13 @@ export default function DesktopMenu(props: DesktopMenuProps) {
                         className='desktop-menu__icon'
                         onClick={() => setMenuOpen(!isMenuOpen)}
                     />
-                    <p
+                    <li
                         className={
                             isMenuOpen ? 'desktop-menu__items_item_text' : 'display-none'
                         }
                     >
                         Подписки
-                    </p>
+                    </li>
                 </NavLink>
 
                 <NavLink
@@ -95,13 +95,13 @@ export default function DesktopMenu(props: DesktopMenuProps) {
                         onClick={() => setMenuOpen(!isMenuOpen)}
                     />
 
-                    <p
+                    <li
                         className={
                             isMenuOpen ? 'desktop-menu__items_item_text' : 'display-none'
                         }
                     >
                         Мой профиль
-                    </p>
+                    </li>
                 </NavLink>
             </ul>
             <div className='desktop-menu__footer'>
