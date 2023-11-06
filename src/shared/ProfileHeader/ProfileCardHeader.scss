@@ -1,30 +1,30 @@
-@import '../../style/variables.scss';
+@import '../../style/variables';
 
 .profile-card-header {
-	display: flex;
-	width: 70%;
-	height: max-content;
-	flex-direction: row;
-	gap: 12px;
-	align-items: center;
-	justify-content: space-between;
-	cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+  align-items: center;
+  justify-content: space-between;
+  width: 70%;
+  height: max-content;
+  cursor: pointer;
 
-	&__name {
-		flex-grow: 1;
-		align-self: center;
+  &__name {
+    flex-grow: 1;
+    align-self: center;
 
-		& > h3 {
-			font-weight: $font-medium;
-		}
+    & > h3 {
+      font-weight: $font-medium;
+    }
 
-		& > p {
-			font-size: 12px;
-		}
-	}
+    & > p {
+      font-size: 12px;
+    }
+  }
 
-	&_avatar {
-		width: 50px;
-		height: 50px;
-	}
+  &_avatar {
+    width: 50px;
+    height: 50px;
+  }
 }

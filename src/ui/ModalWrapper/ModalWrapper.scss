@@ -1,76 +1,63 @@
-@import '../../style/variables.scss';
+@import '../../style/variables';
 
 .modal-wrapper {
-	height: 100%;
-	overflow-x: hidden;
-	position: fixed;
-	top: 0;
-	right: 0;
-	bottom: 0;
-	left: 0;
-	padding-left: 200px;
-	width: 100%;
-	overflow: hidden;
+  position: fixed;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  padding-left: 200px;
+  overflow: hidden;
+  inset: 0;
 
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
+  @media (max-width: $max-width_desktop_medium) {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+  }
 
-	z-index: 100;
+  &__background {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: $background-color_black;
+    opacity: 0.5;
+    inset: 0;
 
-	@media (max-width: $max-width_desktop_medium) {
-		position: fixed;
-		top: 0;
-		left: 0;
-		height: 100vh;
-		width: 100%;
-	}
+    @media (max-width: $max-width_desktop_medium) {
+      display: none;
+    }
+  }
 
-	&__background {
-		position: fixed;
-		width: 100%;
-		height: 100%;
-		top: 0;
-		left: 0;
-		right: 0;
-		bottom: 0;
-		background-color: $background-color_black;
-		opacity: 50%;
+  &__content {
+    z-index: 111;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    width: calc(100% - 200px);
+    max-width: 860px;
+    padding: 25px;
+    background-color: $background-color_white;
+    border: 1px solid $font-color_inactive;
+    border-radius: 12px;
 
-		@media (max-width: $max-width_desktop_medium) {
-			display: none;
-		}
-	}
-
-	&__content {
-		width: calc(100% - 200px);
-		max-width: 860px;
-		z-index: 111;
-		display: flex;
-		flex-direction: column;
-		gap: 24px;
-		background-color: $background-color_white;
-		padding: 25px;
-		border-radius: 12px;
-		border: 1px solid $font-color_inactive;
-
-		@media (max-width: $max-width_desktop-medium) {
-			border-radius: 0;
-			border: 0;
-			flex-direction: column;
-			position: absolute;
-			top: 45px;
-			left: 0;
-			right: 0;
-			margin: 0;
-			-webkit-border-radius: 0;
-			-moz-border-radius: 0;
-			-ms-border-radius: 0;
-			-o-border-radius: 0;
-			max-width: 100%;
-			min-width: 100%;
-			height: 100%;
-		}
-	}
+    @media (max-width: $max-width_desktop-medium) {
+      position: absolute;
+      top: 45px;
+      right: 0;
+      left: 0;
+      flex-direction: column;
+      min-width: 100%;
+      max-width: 100%;
+      height: 100%;
+      margin: 0;
+      border: 0;
+      border-radius: 0;
+    }
+  }
 }

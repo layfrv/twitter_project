@@ -1,49 +1,49 @@
 .news-page {
-	width: 100%;
-	display: flex;
-	flex-direction: column;
-	gap: 30px;
-	align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  align-items: flex-start;
+  width: 100%;
 
-	&__header {
-		width: 100%;
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
+  &__header {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    width: 100%;
 
-		&_headers {
-			display: flex;
-			gap: 30px;
+    &_headers {
+      display: flex;
+      gap: 30px;
 
-			& > button > h1 {
-				text-align: left;
-			}
-		}
+      & > button > h1 {
+        text-align: left;
+      }
+    }
 
-		&_icon {
-			width: 24px;
-			height: 24px;
-			cursor: pointer;
-			background-color: inherit;
-		}
+    &_icon {
+      width: 24px;
+      height: 24px;
+      background-color: inherit;
+      cursor: pointer;
+    }
 
-		@media screen and (max-width: 720px) {
-			flex-direction: column;
-			align-items: flex-start;
-			gap: 20px;
-		}
-	}
+    @media screen and (width <= 720px) {
+      flex-direction: column;
+      gap: 20px;
+      align-items: flex-start;
+    }
+  }
 
-	&__content {
-		display: flex;
-		flex-direction: column;
-		gap: 24px;
-		width: 100%;
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    width: 100%;
 
-		&_tags {
-			display: flex;
-			flex-wrap: wrap;
-			gap: 8px;
-		}
-	}
+    &_tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+  }
 }

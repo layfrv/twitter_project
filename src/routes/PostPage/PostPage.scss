@@ -1,76 +1,75 @@
 @import '../../style/variables';
 
 .post-page {
-	display: flex;
-	flex-direction: column;
-	gap: 32px;
-	width: 100%;
-	overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  width: 100%;
+  overflow-x: hidden;
 
-	&__image {
-		border-radius: 12px;
-		background-color: white;
-		width: 100%;
-		max-height: 560px;
+  &__image {
+    width: 100%;
+    max-height: 560px;
+    background-color: white;
+    border-radius: 12px;
 
-		> img {
-			max-height: 560px;
-			border-radius: 12px;
-			object-fit: cover;
+    > img {
+      max-height: 560px;
+      object-fit: cover;
+      border-radius: 12px;
 
-			@media screen and (max-width: $max-width_desktop_medium) {
-				max-height: 260px;
-			}
-		}
-	}
+      @media screen and (max-width: $max-width_desktop_medium) {
+        max-height: 260px;
+      }
+    }
+  }
 
-	&__content {
-		width: 100%;
-		display: flex;
-		flex-direction: column;
-		justify-content: space-between;
-		gap: 42px;
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: 42px;
+    justify-content: space-between;
+    width: 100%;
 
-		&_main {
-			display: flex;
-			flex-direction: row;
-			gap: 32px;
-			justify-content: space-between;
+    &_main {
+      display: flex;
+      flex-direction: row;
+      gap: 32px;
+      justify-content: space-between;
 
-			&_text {
-				width: 100%;
-				display: flex;
-				flex-direction: column;
-				flex-grow: 2;
-				gap: 16px;
-			}
+      &_text {
+        display: flex;
+        flex-direction: column;
+        flex-grow: 2;
+        gap: 16px;
+        width: 100%;
+      }
 
-			&_profile-card {
-				width: 70%;
+      &_profile-card {
+        width: 70%;
 
-				@media screen and (max-width: 1250px) {
-					width: 100%;
-				}
-			}
+        @media screen and (width <= 1250px) {
+          width: 100%;
+        }
+      }
 
-			&_tags {
-				display: flex;
-				gap: 8px;
-			}
+      &_tags {
+        display: flex;
+        gap: 8px;
+      }
 
-			&_footer {
-				display: flex;
-				justify-content: space-between;
-			}
+      &_footer {
+        display: flex;
+        justify-content: space-between;
+      }
 
-			@media screen and (max-width: 1250px) {
-				flex-wrap: wrap;
-				flex-direction: column;
-			}
-		}
-	}
+      @media screen and (width <= 1250px) {
+        flex-flow: column wrap;
+      }
+    }
+  }
 
-	@media screen and (max-width: $max-width_desktop-medium) {
-		gap: 24px;
-	}
+  @media screen and (max-width: $max-width_desktop-medium) {
+    gap: 24px;
+  }
 }

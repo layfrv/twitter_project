@@ -1,28 +1,28 @@
-@import '../../style/variables.scss';
+@import '../../style/variables';
 
 .comments-list {
-	display: flex;
-	flex-direction: column;
-	gap: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 
-	> h3 {
-		font-size: 18px;
-		font-weight: $font-bold;
-	}
+  > h3 {
+    font-weight: $font-bold;
+    font-size: 18px;
+  }
 
-	@media screen and (max-width: $max-width_desktop-medium) {
-		width: 100%;
-		gap: 24px;
-	}
+  @media screen and (max-width: $max-width_desktop-medium) {
+    gap: 24px;
+    width: 100%;
+  }
 
-	&__add-comment {
-		width: 700px;
-		display: flex;
-		flex-direction: column;
-		gap: 24px;
+  &__add-comment {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    width: 700px;
 
-		@media screen and (max-width: 1200px) {
-			width: 100%;
-		}
-	}
+    @media screen and (width <= 1200px) {
+      width: 100%;
+    }
+  }
 }

@@ -1,48 +1,47 @@
-@import '../../style/variables.scss';
+@import '../../style/variables';
 
 .input {
-	display: flex;
-	flex-direction: column;
-	align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 
-	&-label {
-		line-height: 24px;
-		font-size: 16px;
-		font-weight: $font-regular;
-		margin-bottom: 4px;
-	}
+  &-label {
+    margin-bottom: 4px;
+    font-weight: $font-regular;
+    font-size: 16px;
+    line-height: 24px;
+  }
 
-	&-field {
-		height: 46px;
-		width: 100%;
+  &-field {
+    position: relative;
+    display: flex;
+    width: 100%;
+    height: 46px;
+    border-radius: 12px;
 
-		position: relative;
-		display: flex;
-		border-radius: 12px;
+    &__text {
+      width: 100%;
+      padding: 8px 12px;
+      font-size: 16px;
+      line-height: 24px;
+      background-color: $background-color-white;
+      border: 1px solid $button-color-inactive;
+      border-radius: 12px;
+      box-shadow: inset 0 0 0 50px #fff;
 
-		&__text {
-			-webkit-box-shadow: inset 0 0 0 50px #fff;
-			border: 1px solid $button-color-inactive;
-			width: 100%;
-			border-radius: 12px;
-			padding: 8px 12px;
-			font-size: 16px;
-			line-height: 24px;
-			background-color: $background-color-white;
+      &::placeholder {
+        color: $font-color-inactive;
+      }
+    }
 
-			&::placeholder {
-				color: $font-color-inactive;
-			}
-		}
-
-		&__icon {
-			position: absolute;
-			display: flex;
-			align-items: center;
-			top: 0;
-			bottom: 0;
-			right: 0.875rem;
-			cursor: pointer;
-		}
-	}
+    &__icon {
+      position: absolute;
+      top: 0;
+      right: 0.875rem;
+      bottom: 0;
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+    }
+  }
 }

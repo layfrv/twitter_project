@@ -1,66 +1,66 @@
 @import '../../style/variables';
 
 .dropdown-menu {
-	position: absolute;
-	z-index: 50;
-	cursor: pointer;
+  position: absolute;
+  z-index: 50;
+  cursor: pointer;
 
-	&__container {
-		position: absolute;
-		top: 55px;
-		right: -16px;
-		width: max-content;
-		background-color: $background-color_white;
-		border: solid $font-color_inactive 1px;
-		border-radius: 12px;
-	}
+  &__container {
+    position: absolute;
+    top: 55px;
+    right: -16px;
+    width: max-content;
+    background-color: $background-color_white;
+    border: solid $font-color_inactive 1px;
+    border-radius: 12px;
+  }
 
-	&__container::before {
-		position: absolute;
-		top: -40px;
-		right: 9px;
-		content: '';
-		border: 20px solid transparent;
-		border-bottom: 20px solid $font-color_inactive;
-	}
+  &__container::before {
+    position: absolute;
+    top: -40px;
+    right: 9px;
+    border: 20px solid transparent;
+    border-bottom: 20px solid $font-color_inactive;
+    content: '';
+  }
 
-	&__container::after {
-		position: absolute;
-		top: -39px;
-		right: 9px;
-		content: '';
-		border: 20px solid transparent;
-		border-bottom: 20px solid $background-color_white;
-	}
+  &__container::after {
+    position: absolute;
+    top: -39px;
+    right: 9px;
+    border: 20px solid transparent;
+    border-bottom: 20px solid $background-color_white;
+    content: '';
+  }
 
-	&__list {
-		margin: 0;
-		padding: 0;
-		text-align: left;
+  &__list {
+    margin: 0;
+    padding: 0;
+    text-align: left;
 
-		&-item {
-			padding: 12px;
-			cursor: pointer;
+    &-item {
+      padding: 12px;
+      cursor: pointer;
 
-			& > p {
-				font-size: 16px;
-			}
+      & > p {
+        font-size: 16px;
+      }
 
-			:hover {
-				color: $button-color_main;
-			}
+      :hover {
+        color: $button-color_main;
+      }
 
-			&:last-child {
-				color: $font-color_red;
+      &:last-child {
+        color: $font-color_red;
 
-				:hover {
-					color: $font-color_red;
-				}
-			}
-		}
-	}
+        :hover {
+          color: $font-color_red;
+        }
+      }
+    }
+  }
 
-	@media screen and (max-width: 720px) {
-		z-index: 100;
-	}
+  @media screen and (width <= 720px) {
+    z-index: 100;
+  }
 }

@@ -77,13 +77,13 @@ export default function NewsPage() {
                             onClick={() => setTypeNews('userNews')}
                             style={{cursor: 'pointer'}}
                         >
-                            <h1 style={{fontWeight: userNewsTitleStyle}}>Мои новости</h1>
+                            <h2 style={{fontWeight: userNewsTitleStyle}}>Мои новости</h2>
                         </button>
                         <button
                             onClick={() => setTypeNews('allNews')}
                             style={{cursor: 'pointer'}}
                         >
-                            <h1 style={{fontWeight: allNewsTitleStyle}}>Все новости</h1>
+                            <h2 style={{fontWeight: allNewsTitleStyle}}>Все новости</h2>
                         </button>
                     </div>
                     <Button

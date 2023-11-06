@@ -1,19 +1,18 @@
-@import "../../../style/variables.scss";
+@import "../../../style/variables";
 
 .checkbox {
   display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
+  flex-flow: row nowrap;
   justify-content: flex-start;
 
   &-icon {
     display: flex;
-    width: 20px;
-    height: 20px;
-    border-radius: 8px;
     align-items: center;
     justify-content: center;
+    width: 20px;
+    height: 20px;
     border: 1px solid $button-color_inactive;
+    border-radius: 8px;
 
     &__checked {
       background-color: $button-color_main;

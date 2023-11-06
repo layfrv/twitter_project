@@ -1,29 +1,29 @@
-@import '../../style/variables.scss';
+@import '../../style/variables';
 
 .tag {
-	width: max-content;
-	border-radius: 8px;
+  width: max-content;
+  border-radius: 8px;
 	
-	&__primary {
-		background-color: $button-color_main;
+  &__primary {
+    background-color: $button-color_main;
 
-		& > p {
-			color: white;
-		}
-	}
+    & > p {
+      color: white;
+    }
+  }
 	
-	&__secondary {
-		border: 1px solid $button-color_main;
-		background-color: $background-color_white;
+  &__secondary {
+    background-color: $background-color_white;
+    border: 1px solid $button-color_main;
 		
-		& > p {
-			color: $background-color_black;
-		}
-	}
+    & > p {
+      color: $background-color_black;
+    }
+  }
 
-	& > p {
-		font-size: 12px;
-		font-weight: $font-regular;
-		padding: 6px 9px;
-	}
+  & > p {
+    padding: 6px 9px;
+    font-weight: $font-regular;
+    font-size: 12px;
+  }
 }

@@ -1,18 +1,18 @@
 @import '../../style/variables';
 
 .avatar {
-	display: block;
-	border-radius: 50%;
-	overflow: hidden;
+  display: block;
+  overflow: hidden;
+  border-radius: 50%;
 
-	& > img {
-		width: 100%;
-		height: 100%;
-		object-fit: cover;
-	}
+  & > img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
 
-	@media (max-width: $max-width_desktop-medium) {
-		width: 100%;
-		height: 100%;
-	}
+  @media (max-width: $max-width_desktop-medium) {
+    width: 100%;
+    height: 100%;
+  }
 }

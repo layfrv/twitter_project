@@ -1,38 +1,116 @@
-@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&display=swap");
+@import 'https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&display=swap';
+
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+  -webkit-margin-before: 0;
+  margin-block: 0 0;
+  -webkit-margin-after: 0;
+  -webkit-margin-start: 0;
+  margin-inline: 0 0;
+  -webkit-margin-end: 0;
+}
+
 body {
-  font-family: "Nunito", sans-serif;
+  font-family: Nunito, sans-serif;;
+}
+
+input,
+label,
+select,
+button,
+textarea {
   margin: 0;
   padding: 0;
-  width: 100%;
+  font-family: Nunito, sans-serif;
+  white-space: normal;
+  background-color: inherit;
+  border: 0;;
 }
 
-button,
-input {
+a,
+a:link,
+a:visited {
+  color: inherit;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+aside,
+nav,
+footer,
+header,
+section,
+main {
   display: block;
-  -webkit-box-shadow: none;
-          box-shadow: none;
-  background-color: transparent;
-  background: #fff;
-  font-family: 'Nunito', sans-serif;
+}
+
+ul,
+ul li {
+  margin: 0;
+  list-style: none;
+}
+
+ul {
+  padding: 0;
+  -webkit-padding-start: 0;
+  padding-inline-start: 0;
+}
+
+nav {
+  -webkit-padding-start: 0;
+  padding-inline-start: 0;
+  margin: 0;
+  padding: 0;
+}
+
+img {
+  width: 100%;
+  height: auto;
+  vertical-align: top;
+}
+
+img,
+svg {
+  max-width: 100%;
+  height: auto;
+}
+
+input::-ms-clear {
+  display: none;
+}
+
+h1 {
+  font-weight: $font-bold;;
+  font-size: 32px;
+  font-family: Nunito, sans-serif;
+
+  @media screen and (max-width: $max-width_desktop-medium) {
+    font-weight: $font-bold;
+    font-size: 24px;
+  }
+}
+
+h2 {
+  font-weight: $font-bold;
+  font-size: 24px;
+
+  @media screen and (max-width: $max-width_desktop-medium) {
+    font-weight: $font-bold;
+    font-size: 24px;
+  }
+}
+
+h3 {
+  font-weight: $font-bold;
+  font-size: 18px;
+}
+
+p {
+  font-weight: $font-regular;
   font-size: 16px;
-  font-style: normal;
-  font-weight: 400;
-  color: #312c3a;
-  line-height: 24px;
-  outline: 1px solid #651fff;
 }
-
-input:invalid {
-  border: 1px solid #ffbfbf;
-}
-
-input:focus,
-textarea:focus {
-  border: 1px solid #651fff;
-}
-
-textarea {
-  outline: 1px solid #651fff;
-  overflow-y: scroll;
-}
-/*# sourceMappingURL=index.css.map */

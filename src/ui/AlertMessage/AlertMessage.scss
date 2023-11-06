@@ -1,31 +1,31 @@
 @import '../../style/variables';
 
 .alert-container {
-	&__error {
-		border-radius: 12px;
-		padding: 16px;
-		background-color: $button-color-error;
-	}
+  &__error {
+    padding: 16px;
+    background-color: $button-color-error;
+    border-radius: 12px;
+  }
 
-	&__success {
-		border-radius: 12px;
-		padding: 16px;
-		background-color: $button-color-success;
-	}
+  &__success {
+    padding: 16px;
+    background-color: $button-color-success;
+    border-radius: 12px;
+  }
 }
+
 .alert-content {
-	display: flex;
-	flex-direction: row;
-	align-items: center;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 
-	&__icon {
-		height: min-content;
-		flex-shrink: 0;
-		height: 24px;
-	}
+  &__icon {
+    flex-shrink: 0;
+    height: 24px;
+  }
 
-	&__text {
-		line-height: 22px;
-		margin-left: 12px;
-	}
+  &__text {
+    margin-left: 12px;
+    line-height: 22px;
+  }
 }
