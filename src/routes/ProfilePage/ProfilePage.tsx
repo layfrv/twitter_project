@@ -73,9 +73,12 @@ export default function ProfilePage() {
 
     const dropdownMenuItems = useMemo(
         () => [
-            {name: 'Редактировать профиль', func: editUserHandler},
-            {name: 'Выйти из профиля', func: logoutUserHandler},
-            {name: 'Удалить профиль', func: openDeleteModalHandler},
+            {name: 'Редактировать профиль',
+func: editUserHandler},
+            {name: 'Выйти из профиля',
+func: logoutUserHandler},
+            {name: 'Удалить профиль',
+func: openDeleteModalHandler},
         ],
         [],
     );

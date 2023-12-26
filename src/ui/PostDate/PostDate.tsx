@@ -2,7 +2,7 @@ import getFormatDate from '../../utils/getFormatDate';
 import './PostDate.scss';
 
 type PostDateProps = {
-date: Date;
+date: Date,
 }
 
 export default function PostDate(props: PostDateProps) {

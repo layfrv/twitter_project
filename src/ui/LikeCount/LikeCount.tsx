@@ -3,9 +3,9 @@ import {ReactComponent as LikeCountIconOutline} from '../icons/favorite-outline.
 import './LikeCount.scss';
 
 type LikeCountProps = {
-count: number;
-isLiked: boolean;
-onClickHandler: () => void;
+count: number,
+isLiked: boolean,
+onClickHandler: () => void,
 };
 
 export default function LikeCount(props: LikeCountProps) {

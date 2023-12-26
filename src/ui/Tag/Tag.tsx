@@ -1,11 +1,11 @@
 import './Tag.scss';
 
 type TagProps = {
-text: string;
-key?: number;
-primary?: boolean;
-secondary?: boolean;
-isActiveTag?: boolean;
+text: string,
+key?: number,
+primary?: boolean,
+secondary?: boolean,
+isActiveTag?: boolean,
 };
 
 export default function Tag(props: TagProps) {

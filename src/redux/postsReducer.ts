@@ -13,19 +13,21 @@ import {
 } from '../constants/post';
 import {
     CommentType,
+    ImageDataType,
     PostRequest,
     PostType,
     TagDataType,
     idDataType,
     newCommentType,
-    ImageDataType,
 } from '../types/Post';
 import {RootState} from './store';
 
 export const createPost = createAsyncThunk(
     'createPost',
     async (data: PostRequest, {rejectWithValue}) => {
-        const textData = {title: data.title, text: data.text, tags: data.tags};
+        const textData = {title: data.title,
+            text: data.text,
+            tags: data.tags};
 
         try {
             const responsePost: AxiosResponse<PostType> = await axios.post(
@@ -69,7 +71,6 @@ export const uploadImagePost = createAsyncThunk(
                     },
                 },
             );
-            console.log('photo uploaded');
             return response.data;
         } catch (error) {
             if (error.response && error.response.data.message) {

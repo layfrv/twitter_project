@@ -5,17 +5,17 @@ import {ReactComponent as EyeIcon} from '../icons/view-hide.svg';
 import './Input.scss';
 
 interface IInputProps {
-label: string;
-type: 'text' | 'number' | 'email' | 'password';
-name: string;
-value: string | number | string[];
-placeholder: string;
-onChange: (value: any) => void;
-disabled?: boolean;
-required?: boolean;
-maxLength?: number;
-minLength?: number;
-onKeyDownHandler?: KeyboardEventHandler;
+label: string,
+type: 'text' | 'number' | 'email' | 'password',
+name: string,
+value: string | number | string[],
+placeholder: string,
+onChange: (value: any) => void,
+disabled?: boolean,
+required?: boolean,
+maxLength?: number,
+minLength?: number,
+onKeyDownHandler?: KeyboardEventHandler,
 }
 
 export default function Input(props: IInputProps) {

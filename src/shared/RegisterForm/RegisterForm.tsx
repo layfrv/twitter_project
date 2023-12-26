@@ -11,8 +11,8 @@ import UploadImageButton from '../../ui/UploadImageButton';
 import './RegisterForm.scss';
 
 type RegisterFormProps = {
-  avatar: File;
-  setAvatar: Dispatch<SetStateAction<File>>
+  avatar: File,
+  setAvatar: Dispatch<SetStateAction<File>>,
 }
 
 export default function RegisterForm(props: RegisterFormProps) {

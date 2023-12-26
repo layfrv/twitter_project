@@ -13,16 +13,16 @@ import ProfileCardHeader from '../ProfileHeader';
 import './ProfileCard.scss';
 
 type DropdownMenuType = {
-    name: string;
-    func: () => void;
+    name: string,
+    func: () => void,
 };
 
 type profileCard = {
-    user: UserType;
-    type: 'thisUser' | 'anotherUser';
-    dropdownMenuItems?: DropdownMenuType[];
-    primaryButtonHandler?: () => void;
-    secondaryButtonHandler?: () => void;
+    user: UserType,
+    type: 'thisUser' | 'anotherUser',
+    dropdownMenuItems?: DropdownMenuType[],
+    primaryButtonHandler?: () => void,
+    secondaryButtonHandler?: () => void,
 };
 
 const ProfileCard = (props: profileCard) => {

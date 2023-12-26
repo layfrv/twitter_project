@@ -2,11 +2,11 @@ import {LegacyRef} from 'react';
 import './SearchInput.scss';
 
 interface IInputProps {
-value: string;
-name?: string;
-placeholder: string;
-onChange: (value: string) => void;
-ref?: LegacyRef<HTMLInputElement>;
+value: string,
+name?: string,
+placeholder: string,
+onChange: (value: string) => void,
+ref?: LegacyRef<HTMLInputElement>,
 }
 
 export default function SearchInput(props: IInputProps) {

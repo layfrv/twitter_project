@@ -2,7 +2,7 @@ import {ReactComponent as BackIcon} from '../icons/back-left.svg';
 import './ReturnButton.scss';
 
 type ReturnButtonProps = {
-onClickHandler: () => void;
+onClickHandler: () => void,
 };
 
 export default function ReturnButton(props: ReturnButtonProps) {

@@ -8,7 +8,7 @@ import TextField from '../../ui/TextField';
 import './CommentsList.scss';
 
 type CommentsListProps = {
-  postId: number;
+  postId: number,
 };
 
 export default function CommentsList(props: CommentsListProps) {

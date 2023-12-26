@@ -18,7 +18,7 @@ import {ReactComponent as CloseIcon} from '../../ui/icons/close-modal.svg';
 import './EditPostModal.scss';
 
 type EditPostModalProps = {
-  openEditModalHandler: () => void
+  openEditModalHandler: () => void,
 }
 
 export default function EditPostModal(props: EditPostModalProps) {
@@ -89,7 +89,8 @@ export default function EditPostModal(props: EditPostModalProps) {
             if (image !== null) {
                 const imageFile = new FormData();
                 imageFile.append('file', image);
-                const imageData = {imageFile, selectedPostId};
+                const imageData = {imageFile,
+                    selectedPostId};
                 dispatch(uploadImagePost(imageData));
             }
 
@@ -123,7 +124,10 @@ export default function EditPostModal(props: EditPostModalProps) {
                 <div className='edit-post-modal__header'>
                     <h2>Редактировать пост</h2>
                     {isDesktop && (
-                        <button onClick={props.openEditModalHandler}>
+                        <button
+                            onClick={props.openEditModalHandler}
+                            aria-label="edit post"
+                        >
                             <CloseIcon />
                         </button>
                     )}

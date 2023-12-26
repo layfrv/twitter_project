@@ -2,13 +2,13 @@ import {ReactComponent as ClearIcon} from '../icons/cross.svg';
 import './TextField.scss';
 
 type TextFieldProps = {
-label: string;
-value: string;
-placeholder: string;
-name: string;
-onChange: (value: any) => void;
-required?: boolean;
-minLength?: number;
+label: string,
+value: string,
+placeholder: string,
+name: string,
+onChange: (value: any) => void,
+required?: boolean,
+minLength?: number,
 };
 
 export default function TextField(props: TextFieldProps) {

@@ -5,8 +5,8 @@ import {useAppDispatch} from './redux/store';
 import {getAccessToken} from './redux/userReducer';
 
 type WrapperProps = {
-isPrivate: boolean;
-children?: React.ReactNode;
+isPrivate: boolean,
+children?: React.ReactNode,
 };
 
 export default function RouterWrapper({isPrivate, children}: WrapperProps) {

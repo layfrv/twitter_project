@@ -10,8 +10,8 @@ import Input from '../../ui/Input';
 import './LoginForm.scss';
 
 type LoginFormProps = {
-  avatar: File;
-  setAvatar: Dispatch<SetStateAction<File>>
+  avatar: File,
+  setAvatar: Dispatch<SetStateAction<File>>,
 }
 
 export default function LoginForm(props: LoginFormProps) {
@@ -38,7 +38,8 @@ export default function LoginForm(props: LoginFormProps) {
 
     const loginHandler = async (event) => {
         event.preventDefault();
-        const loginData = {email, password};
+        const loginData = {email,
+password};
 
         const action = await dispatch(loginUser(loginData));
         if (props.avatar !== null && isRegisterSuccess) {

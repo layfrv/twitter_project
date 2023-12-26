@@ -6,7 +6,7 @@ import {ReactComponent as UserIcon} from '../icons/user.svg';
 import './MobileMenu.scss';
 
 type OpenedMobileMenuProps = {
-handleLogout: () => void
+handleLogout: () => void,
 }
 
 export default function OpenedMobileMenu(props: OpenedMobileMenuProps) {

@@ -56,7 +56,8 @@ export default function NewsPage() {
 
     const [isActiveTag, setActiveTag] = useState(null);
     const tagFilterHandler = (tag) => {
-        dispatch(filterPostsByTag({title: tag.title, typeNews}));
+        dispatch(filterPostsByTag({title: tag.title,
+            typeNews}));
         setActiveTag(tag.id);
     };
 
@@ -111,6 +112,7 @@ export default function NewsPage() {
                                             onClick={() => tagFilterHandler(tag)}
                                             key={Math.random() * 100}
                                             style={{cursor: 'pointer'}}
+                                            aria-label="tag"
                                         >
 
                                             <Tag

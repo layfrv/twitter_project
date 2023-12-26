@@ -2,8 +2,8 @@ import {ReactNode, useEffect} from 'react';
 import './ModalWrapper.scss';
 
 type ModalWrapperProps = {
-children: ReactNode;
-width?: string
+children: ReactNode,
+width?: string,
 }
 
 export default function ModalWrapper({children, width = ''}: ModalWrapperProps) {

@@ -3,7 +3,7 @@ import {ReactComponent as Logo} from '../icons/logo.svg';
 import {ReactComponent as MenuIcon} from '../icons/menu-mobile.svg';
 
 interface IPropsMenu {
-className: string;
+className: string,
 }
 
 export default function DesktopHeader(props: IPropsMenu) {
@@ -11,7 +11,10 @@ export default function DesktopHeader(props: IPropsMenu) {
 
     return (
         <div className={className}>
-            <button className={`${className}-logo`}>
+            <button
+                className={`${className}-logo`}
+                aria-label="logo"
+            >
                 <Logo />
             </button>
             <div className={`${className}-btns`}>
@@ -19,7 +22,10 @@ export default function DesktopHeader(props: IPropsMenu) {
                     secondary
                     label='Войти'
                 />
-                <button className='header-menu'>
+                <button
+                    className='header-menu'
+                    aria-label="menu"
+                >
                     <MenuIcon />
                 </button>
             </div>

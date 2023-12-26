@@ -27,20 +27,20 @@ import ProfileCardHeader from '../ProfileHeader';
 import './PostCard.scss';
 
 export type PostType = {
-  id: number;
-  title: string;
-  text: string;
-  creatorId: number;
-  likesCount: number;
-  isLiked: boolean;
-  imageId: number;
-  tags: TagType[];
-  createTime: Date;
-  nickname?: string;
-  creator: UserType;
-  typePost: 'private' | 'public';
-  openEditModalHandler?: () => void;
-  hasMenu: boolean;
+  id: number,
+  title: string,
+  text: string,
+  creatorId: number,
+  likesCount: number,
+  isLiked: boolean,
+  imageId: number,
+  tags: TagType[],
+  createTime: Date,
+  nickname?: string,
+  creator: UserType,
+  typePost: 'private' | 'public',
+  openEditModalHandler?: () => void,
+  hasMenu: boolean,
 };
 
 export default function PostCard(props: PostType) {
@@ -75,8 +75,10 @@ export default function PostCard(props: PostType) {
                 name: isPinnedPost ? 'Открепить пост' : 'Закрепить пост',
                 func: pinPostHandler,
             },
-            {name: 'Редактировать пост', func: props.openEditModalHandler},
-            {name: 'Удалить пост', func: deleteHandler},
+            {name: 'Редактировать пост',
+func: props.openEditModalHandler},
+            {name: 'Удалить пост',
+func: deleteHandler},
         ],
         [props],
     );

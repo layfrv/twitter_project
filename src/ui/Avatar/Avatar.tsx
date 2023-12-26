@@ -1,8 +1,8 @@
 import './Avatar.scss';
 
 type AvatarProps = {
-imgUrl: string;
-size: string;
+imgUrl: string,
+size: string,
 };
 
 export default function Avatar(props: AvatarProps) {
@@ -11,7 +11,8 @@ export default function Avatar(props: AvatarProps) {
             <img
                 src={props.imgUrl}
                 alt='user-avatar'
-                style={{width: props.size, height: props.size}}
+                style={{width: props.size,
+height: props.size}}
             />
         </div>
     );

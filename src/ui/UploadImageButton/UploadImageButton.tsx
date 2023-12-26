@@ -4,10 +4,10 @@ import {ReactComponent as UploadIcon} from '../icons/upload.svg';
 import './UploadImageButton.scss';
 
 interface IUploadButtonProps {
-buttonText: string;
-label: string;
-onChange: any;
-image: any ;
+buttonText: string,
+label: string,
+onChange: any,
+image: any,
 }
 
 export default function UploadImageButton(props: IUploadButtonProps) {
@@ -71,7 +71,8 @@ export default function UploadImageButton(props: IUploadButtonProps) {
                     </div>
                     <DeleteIcon
                         onClick={deleteImageHandler}
-                        style={{width: '32px', height: '32px'}}
+                        style={{width: '32px',
+height: '32px'}}
                     />
                 </div>
             )}

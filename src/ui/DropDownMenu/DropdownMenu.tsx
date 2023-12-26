@@ -4,13 +4,13 @@ import {ReactComponent as MenuIcon} from '../icons/menu-dots.svg';
 import './DropdownMenu.scss';
 
 type ItemsType = {
-name: string;
-func: () => void;
+name: string,
+func: () => void,
 };
 
 type DropdownMenuType = {
-items: ItemsType[];
-selectOnClick?: () => void;
+items: ItemsType[],
+selectOnClick?: () => void,
 };
 
 export default function DropdownMenu(props: DropdownMenuType) {

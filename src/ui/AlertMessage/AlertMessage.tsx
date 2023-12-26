@@ -3,9 +3,9 @@ import {ReactComponent as AlertIconSuccess} from '../icons/alert-icon-success.sv
 import './AlertMessage.scss';
 
 interface IAlert {
-error?: string;
-success?: boolean;
-text?: string;
+error?: string,
+success?: boolean,
+text?: string,
 }
 
 export default function AlertMessage(props: IAlert) {

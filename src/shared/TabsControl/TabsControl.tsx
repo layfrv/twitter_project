@@ -1,9 +1,9 @@
 import './TabsControl.scss';
 
 interface ITabsControlProps {
-    buttons: string[];
-    clickedId: number;
-    onClick: (id: number) => void;
+    buttons: string[],
+    clickedId: number,
+    onClick: (id: number) => void,
 }
 
 export default function TabsControl(props: ITabsControlProps) {

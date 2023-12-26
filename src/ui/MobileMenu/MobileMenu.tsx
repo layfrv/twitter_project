@@ -11,9 +11,9 @@ import './MobileMenu.scss';
 import OpenedMobileMenu from './OpenedMobileMenu';
 
 type MobileMenuProps = {
-isMenuOpen: boolean;
-setMenuOpen: Dispatch<SetStateAction<boolean>>;
-handleLogout: () => void;
+isMenuOpen: boolean,
+setMenuOpen: Dispatch<SetStateAction<boolean>>,
+handleLogout: () => void,
 }
 
 export default function MobileMenu(props: MobileMenuProps) {
@@ -44,7 +44,10 @@ export default function MobileMenu(props: MobileMenuProps) {
     return (
         <div className='mobile-header__container'>
             <div className='mobile-header  '>
-                <button className='mobile-header__logo'>
+                <button
+                    className='mobile-header__logo'
+                    aria-label="logo"
+                >
                     <Logo />
                 </button>
                 <div className='mobile-header__btns'>
@@ -52,6 +55,7 @@ export default function MobileMenu(props: MobileMenuProps) {
                         <button
                             type='submit'
                             className='mobile-header__button'
+                            aria-label="unsubscribe"
                         >
                             Войти
                         </button>
@@ -63,7 +67,10 @@ export default function MobileMenu(props: MobileMenuProps) {
                             />
                         </div>
                     )}
-                    <button className='mobile-header__menu'>
+                    <button
+                        className='mobile-header__menu'
+                        aria-label="menu"
+                    >
                         {isMenuOpen ? (
                             <CloseIcon onClick={toggleMenu} />
                         ) : (

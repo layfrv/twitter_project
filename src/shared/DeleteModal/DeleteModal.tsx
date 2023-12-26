@@ -3,8 +3,8 @@ import ModalWrapper from '../../ui/ModalWrapper';
 import './DeleteModal.scss';
 
 type DeleteModalProps = {
-  handleDeleteUser: () => void;
-  openDeleteModal: () => void
+  handleDeleteUser: () => void,
+  openDeleteModal: () => void,
 }
 
 export default function DeleteModal(props: DeleteModalProps) {

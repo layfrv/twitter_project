@@ -7,13 +7,13 @@ import {ReactComponent as DeleteIcon} from '../icons/cross.svg';
 import './Comment.scss';
 
 type CommentProps = {
-  commentId: number;
-  postId: number;
-  avatarUrl: number;
-  firstName: string;
-  lastName: string;
-  text: string;
-  userId: number;
+  commentId: number,
+  postId: number,
+  avatarUrl: number,
+  firstName: string,
+  lastName: string,
+  text: string,
+  userId: number,
 };
 
 export default function Comment(props: CommentProps) {
@@ -23,7 +23,8 @@ export default function Comment(props: CommentProps) {
 
     const deleteCommentHandler = () => {
         dispatch(
-            deleteComment({commentId: props.commentId, postId: props.postId}),
+            deleteComment({commentId: props.commentId,
+                postId: props.postId}),
         );
     };
 
@@ -48,6 +49,7 @@ export default function Comment(props: CommentProps) {
                 <button
                     className="comment_btn"
                     onClick={deleteCommentHandler}
+                    aria-label="delete comment"
                 >
                     <DeleteIcon />
                 </button>

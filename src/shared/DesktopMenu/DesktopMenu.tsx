@@ -10,9 +10,9 @@ import {ReactComponent as UserIcon} from '../../ui/icons/user.svg';
 import './DesktopMenu.scss';
 
 type DesktopMenuProps = {
-  isMenuOpen: boolean;
-  setMenuOpen: Dispatch<SetStateAction<boolean>>
-  handleLogout: () => void;
+  isMenuOpen: boolean,
+  setMenuOpen: Dispatch<SetStateAction<boolean>>,
+  handleLogout: () => void,
 }
 
 export default function DesktopMenu(props: DesktopMenuProps) {
@@ -41,7 +41,10 @@ export default function DesktopMenu(props: DesktopMenuProps) {
                     </p>
                 </div>
 
-                <button onClick={() => setMenuOpen(!isMenuOpen)}>
+                <button
+                    onClick={() => setMenuOpen(!isMenuOpen)}
+                    aria-label="open menu"
+                >
                     <MenuIcon
                         className={isMenuOpen ? 'desktop-menu__icon' : 'display-none'}
                     />

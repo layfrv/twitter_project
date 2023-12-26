@@ -5,12 +5,12 @@ import {
 import './Button.scss';
 
 type ButtonPropsType = {
-label: string;
-primary?: boolean;
-secondary?: boolean;
-onClick?: MouseEventHandler<HTMLButtonElement>;
-isDisabled?: object;
-width?: string;
+label: string,
+primary?: boolean,
+secondary?: boolean,
+onClick?: MouseEventHandler<HTMLButtonElement>,
+isDisabled?: object,
+width?: string,
 };
 
 export default function Button(props: ButtonPropsType) {

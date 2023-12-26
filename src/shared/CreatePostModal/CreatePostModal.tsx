@@ -15,7 +15,7 @@ import {ReactComponent as CloseIcon} from '../../ui/icons/close-modal.svg';
 import './CreatePostModal.scss';
 
 type CreatePostModalProps = {
-  createPostModalHandler: () => void;
+  createPostModalHandler: () => void,
 }
 
 export default function CreatePostModal(props: CreatePostModalProps) {
@@ -101,7 +101,10 @@ export default function CreatePostModal(props: CreatePostModalProps) {
                 <div className='create-post-modal__header'>
                     <h2>Добавить пост</h2>
                     {!isDesktop && (
-                        <button onClick={props.createPostModalHandler}>
+                        <button
+                            onClick={props.createPostModalHandler}
+                            aria-label="add post"
+                        >
                             <CloseIcon />
                         </button>
                     )}

@@ -2,9 +2,9 @@ import {ReactComponent as CheckIcon} from '../../icons/check.svg';
 import './Checkbox.scss';
 
 interface ICheckboxProps {
-text: string;
-isActive: boolean;
-onClick: (ChangeEvent) => void;
+text: string,
+isActive: boolean,
+onClick: (ChangeEvent) => void,
 }
 
 export default function Checkbox(props: ICheckboxProps) {

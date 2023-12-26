@@ -14,9 +14,9 @@ import noneAvatar from '../images/none-avatar.png';
 import './ProfileCardMini.scss';
 
 type ProfileCardMini = {
-user: UserType;
-type: 'thisUser' | 'anotherUser';
-buttonHandler?: () => void;
+user: UserType,
+type: 'thisUser' | 'anotherUser',
+buttonHandler?: () => void,
 };
 
 const ProfileCardMini = (props: ProfileCardMini) => {
@@ -32,10 +32,7 @@ const ProfileCardMini = (props: ProfileCardMini) => {
         [props.user],
     );
 
-    const isSubscribed = useMemo(
-        () => userSubscriptions !== null && isSubscribedOnUser(props.user.id, userSubscriptions),
-        [props.user],
-    );
+    const isSubscribed = userSubscriptions !== null && isSubscribedOnUser(props.user.id, userSubscriptions);
 
     const subscribeHandler = () => {
         dispatch(subscribeUser(props.user.id));
@@ -85,7 +82,10 @@ const ProfileCardMini = (props: ProfileCardMini) => {
                                 onClick={unsubscribeHandler}
                             />
                         ) : (
-                            <button onClick={unsubscribeHandler}>
+                            <button
+                                onClick={unsubscribeHandler}
+                                aria-label="unsubscribe"
+                            >
                                 <IconIsSubscribed />
                             </button>
                         ))}
@@ -96,7 +96,10 @@ const ProfileCardMini = (props: ProfileCardMini) => {
                                 onClick={subscribeHandler}
                             />
                         ) : (
-                            <button onClick={subscribeHandler}>
+                            <button
+                                onClick={subscribeHandler}
+                                aria-label="unsubscribe"
+                            >
                                 <IconNotSubscribed />
                             </button>
                         ))}

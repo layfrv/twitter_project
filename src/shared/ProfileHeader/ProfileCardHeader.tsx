@@ -6,11 +6,11 @@ import Avatar from '../../ui/Avatar';
 import './ProfileCardHeader.scss';
 
 type ProfileCardHeaderType = {
-avatarUrl: string;
-firstName: string;
-lastName: string;
-nickName: string;
-userId: number;
+avatarUrl: string,
+firstName: string,
+lastName: string,
+nickName: string,
+userId: number,
 };
 
 export default function ProfileCardHeader(props: ProfileCardHeaderType) {
