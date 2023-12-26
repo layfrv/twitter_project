@@ -22,7 +22,7 @@ import Tag from '../../ui/Tag';
 import {ReactComponent as PinIcon} from '../../ui/icons/pin.svg';
 import noneAvatar from '../../ui/images/none-avatar.png';
 import createNickname from '../../utils/createNickname';
-import isAuthorOfPost from '../../utils/isPublicPost';
+import isAuthorOfPost from '../../utils/isAuthorOfPost';
 import ProfileCardHeader from '../ProfileHeader';
 import './PostCard.scss';
 
@@ -76,9 +76,9 @@ export default function PostCard(props: PostType) {
                 func: pinPostHandler,
             },
             {name: 'Редактировать пост',
-func: props.openEditModalHandler},
+                func: props.openEditModalHandler},
             {name: 'Удалить пост',
-func: deleteHandler},
+                func: deleteHandler},
         ],
         [props],
     );

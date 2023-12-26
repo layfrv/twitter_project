@@ -13,13 +13,14 @@ import ProfileCardMini from '../../ui/ProfileCardMini';
 import ReturnButton from '../../ui/ReturnButton';
 import Tag from '../../ui/Tag';
 import getFileUrl from '../../utils/getFileUrl';
-import isAuthorOfPost from '../../utils/isPublicPost';
+import isAuthorOfPost from '../../utils/isAuthorOfPost';
 import './PostPage.scss';
 
 export default function PostPage() {
     const dispatch = useAppDispatch();
     const history = useHistory();
     const isLoadingPosts = useAppSelector((state) => state.posts.isLoadingPosts);
+    const userId = useAppSelector((state) => state.user.user.id);
     const isLoadingComments = useAppSelector(
         (state) => state.posts.isLoadingComments,
     );
@@ -55,7 +56,7 @@ export default function PostPage() {
         history.goBack();
     };
 
-    const isAuthor = isAuthorOfPost(selectedPost?.id, selectedPost?.creator.id);
+    const isAuthor = isAuthorOfPost(selectedPost?.creator.id, userId);
 
     const profileSubscriptionsHandler = () => {
         history.push(RoutePaths.ROUTE_SUBSCRIPTIONS);
@@ -69,9 +70,12 @@ export default function PostPage() {
         return <Loader />;
     }
 
+    if (!selectedPost) {
+        return <Loader />;
+    }
+
     return (
         <Layout>
-            {!selectedPost && <Loader />}
             {postStatus === 'succeeded' && (
                 <div className='post-page'>
                     <ReturnButton onClickHandler={returnButtonHandler} />

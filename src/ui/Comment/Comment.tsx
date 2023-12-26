@@ -1,7 +1,7 @@
 import {GET_FILE} from '../../constants/user';
 import {deleteComment} from '../../redux/postsReducer';
 import {useAppDispatch} from '../../redux/store';
-import isAuthorOfPost from '../../utils/isPublicPost';
+import isAuthorOfPost from '../../utils/isAuthorOfPost';
 import Avatar from '../Avatar';
 import {ReactComponent as DeleteIcon} from '../icons/cross.svg';
 import './Comment.scss';

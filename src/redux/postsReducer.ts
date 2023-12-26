@@ -379,10 +379,10 @@ const postsSlice = createSlice({
                 state.postStatus = 'failed';
                 state.error = action.error;
             })
-            .addCase(uploadImagePost.pending, (state, action) => {
+            .addCase(uploadImagePost.pending, (state) => {
                 state.postStatus = 'loading';
             })
-            .addCase(uploadImagePost.fulfilled, (state, action) => {
+            .addCase(uploadImagePost.fulfilled, (state) => {
                 state.postStatus = 'succeeded';
             })
             .addCase(uploadImagePost.rejected, (state, action) => {
